@@ -10,6 +10,7 @@ import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
 
 
+
 const App = (prors) => {
   return (
     <BrowserRouter>
@@ -19,11 +20,12 @@ const App = (prors) => {
           
           <div className='app-wrapper-content'>
             <Routes>
-              <Route path='/Dialogs' element={<Dialogs />} />
-              <Route path='/Profile' element={<Profile />} />
-              <Route path='/News' element={<News />} />
-              <Route path='/Music' element={<Music />} />
-              <Route path='/Settings' element={<Settings />} />
+              <Route path='/dialogs' element={<Dialogs />} />
+              <Route path="/dialogs/*" element={<Dialogs />} /> 
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/news' element={<News />} />
+              <Route path='/music' element={<Music />} />
+              <Route path='/settings' element={<Settings />} />
             </Routes>
           </div>
       </div>

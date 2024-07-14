@@ -2,7 +2,6 @@
   grid-area: n;
   background-color: darkorchid;
   padding: 20px;
-
 }
 
 .item a {
@@ -10,6 +9,6 @@
   text-decoration: none;
 }
 
-.item a.activeLink {
-    color: rgb(240, 205, 7);
+.item .activeLink {
+  color: rgb(96, 206, 6);
 }

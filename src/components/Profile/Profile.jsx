@@ -1,16 +1,11 @@
 import React from 'react';
-import n from './MyPosts/MyPosts.module.css';
 import MyPosts from './MyPosts/MyPosts';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = () => {
-    return  <div>
-    <div>
-      <img src="https://imgv3.fotor.com/images/slider-image/A-clear-close-up-photo-of-a-woman.jpg"></img>
-    </div>
-    <div>
-      Ava+descriprion
-    </div>
-    <MyPosts/>
+  return <div>
+    <ProfileInfo />
+    <MyPosts />
   </div>
 }
 

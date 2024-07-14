@@ -1,17 +1,22 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 1fr 3fr;
 }
 
 .dialog {
-
+    padding: 5px;
+    cursor: pointer
+    
 }
 
 .dialogItems {
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    
 }
 
-.dialogItems .active {
+.active {
     color: gold;
 }
 
@@ -20,5 +25,5 @@
 }
 
 .message {
-
+    margin: 5px 0;
 }
