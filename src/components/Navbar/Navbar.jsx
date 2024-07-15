@@ -1,16 +1,19 @@
 import React from 'react';
 import n from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
+import Friends from '../Friends/Friends'; // Импортируем компонент Friends
+import state from '../../redux/state'; // Импортируем состояние
 
 const Navbar = () => {
+    const friendsData = state.sidebar.sidebarFriends; // Получаем массив друзей из состояния
+
     return (
         <nav className={n.nav}>
             <div className={n.item}>
                 <NavLink 
                     to="/Profile" 
-                    className={({ isActive }) => 
-                        isActive ? `${n.item} ${n.activeLink}` : n.item
-                    }
+                    className={n.item}
+                    activeClassName={n.activeLink}
                 >
                     Profile
                 </NavLink>
@@ -18,9 +21,8 @@ const Navbar = () => {
             <div className={n.item}>
                 <NavLink 
                     to="/Dialogs" 
-                    className={({ isActive }) => 
-                        isActive ? `${n.item} ${n.activeLink}` : n.item
-                    }
+                    className={n.item}
+                    activeClassName={n.activeLink}
                 >
                     Messages
                 </NavLink>
@@ -28,9 +30,8 @@ const Navbar = () => {
             <div className={n.item}>
                 <NavLink 
                     to="/News" 
-                    className={({ isActive }) => 
-                        isActive ? `${n.item} ${n.activeLink}` : n.item
-                    }
+                    className={n.item}
+                    activeClassName={n.activeLink}
                 >
                     News
                 </NavLink>
@@ -38,9 +39,8 @@ const Navbar = () => {
             <div className={n.item}>
                 <NavLink 
                     to="/Music" 
-                    className={({ isActive }) => 
-                        isActive ? `${n.item} ${n.activeLink}` : n.item
-                    }
+                    className={n.item}
+                    activeClassName={n.activeLink}
                 >
                     Music
                 </NavLink>
@@ -48,15 +48,24 @@ const Navbar = () => {
             <div className={n.item}>
                 <NavLink 
                     to="/Settings" 
-                    className={({ isActive }) => 
-                        isActive ? `${n.item} ${n.activeLink}` : n.item
-                    }
+                    className={n.item}
+                    activeClassName={n.activeLink}
                 >
                     Settings
                 </NavLink>
             </div>
+            <div className={n.itemFriends}>
+                <NavLink 
+                    to="/Friends" 
+                    className={n.item}
+                    activeClassName={n.activeLink}
+                >
+                    Friends
+                </NavLink>
+            </div>
+            <Friends friendsData={friendsData} />
         </nav>
-    )
+    );
 }
 
 export default Navbar;

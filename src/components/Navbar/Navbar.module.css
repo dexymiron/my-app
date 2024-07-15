@@ -12,3 +12,11 @@
 .item .activeLink {
   color: rgb(96, 206, 6);
 }
+
+.itemFriends a {
+  display: grid;
+  color: rgb(250, 250, 250);
+  text-decoration: none;
+  font-size: 30px;
+  padding-top: 50px;
+}

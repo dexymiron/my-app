@@ -1,17 +1,14 @@
 import React from 'react';
 import n from './ProfileInfo.module.css';
+import MyPosts from '../MyPosts/MyPosts';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
   return (
     <div>
-      <div>
-        <img src="https://imgv3.fotor.com/images/slider-image/A-clear-close-up-photo-of-a-woman.jpg"></img>
-      </div>
-      <div className="n.descriptionBlock">
-        Ava+descriprion
-      </div>
+      <img className={n.image} src='https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg' />
     </div>
   );
-}
+};
+
 
 export default ProfileInfo;

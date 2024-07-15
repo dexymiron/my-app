@@ -1,50 +1,33 @@
 import React from 'react';
 import n from './Dialogs.module.css';
-import { NavLink } from 'react-router-dom';
-
-const DialogItem = (props) => {
-    let path = "/dialogs/" + props.id;
-    return (
-        <div className={`${n.dialog} ${n.active}`}>
-            <NavLink to={path}>{props.name}</NavLink>
-        </div>
-    );
-};
-
-const Message = (props) => {
-    return <div className={n.dialog}>{props.message}</div>;
-};
+import DialogItem from './DialogItem/DialogsItem';
+import Message from './Message/Message';
 
 const Dialogs = (props) => {
-    let dialogsData = [
-        {id: 1, name: 'Dimych'},
-        {id: 2, name: 'Andrey'},
-        {id: 3, name: 'Sveta'},
-        {id: 4, name: 'Victor'},
-        {id: 5, name: 'Valera'}
-    ];
 
-    let messagesData = [
-        {id: 1, message: 'Hi'},
-        {id: 2, message: 'What are you doing?'},
-        {id: 3, message: 'Hey'},
-        {id: 4, message: 'Hey'},
-        {id: 5, message: 'Hey'}
-    ];
+  let dialogsElements = props.dialogsData && props.dialogsData.map(d => <DialogItem key={d.id} name={d.name} id={d.id} img={d.image} />);
+  let messagesElements = props.messagesData && props.messagesData.map(m => <Message key={m.id} message={m.message} />);
+  let newPostElement = React.createRef();
 
-    let dialogsElements = dialogsData.map(d => <DialogItem key={d.id} name={d.name} id={d.id} />);
-    let messagesElements = messagesData.map(m => <Message key={m.id} message={m.message} />);
-
-    return (
-        <div className={n.dialogs}>
-            <div className={n.dialogItems}>
-                {dialogsElements}
+  return (
+    <div className={n.dialogs}>
+      <div className={n.dialogItems}>
+        {dialogsElements}
+      </div>
+      <div className={n.messagesLeft}>
+        {messagesElements}
+      </div>
+      <div className={n.messagesRight}>
+        {messagesElements}
+          <div>
+            <textarea ref={newPostElement}></textarea>
+            <div>
+              <button onClick={ () => { alert(newPostElement.current.value)}}>click</button>
             </div>
-            <div className={n.messages}>
-                {messagesElements}
-            </div>
-        </div>
-    );
+          </div>
+      </div>
+    </div>
+  );
 };
 
 export default Dialogs;
