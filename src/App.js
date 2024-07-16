@@ -8,10 +8,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
-import state from './redux/state';
+import state, { addPost } from './redux/state';
 import Friends from './components/Friends/Friends';
 
-const App = () => {
+const App = (props) => {
   return (
     <BrowserRouter>
       <div className='App-wrapper'>
@@ -19,12 +19,12 @@ const App = () => {
         <Navbar />
         <div className='app-wrapper-content'>
           <Routes>
-            <Route path='/dialogs' element={<Dialogs dialogsData={state.profilePage.dialogsData} messagesData={state.messagesPage.messagesData} />} />
-            <Route path='/profile' element={<Profile posts={state.profilePage.posts} />} />
+            <Route path='/dialogs' element={<Dialogs dialogsData={props.state.profilePage.dialogsData} messagesData={props.state.messagesPage.messagesData} />} />
+            <Route path='/profile' element={<Profile posts={props.state.profilePage.posts} addPost={props.addPost}/>} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
-            <Route path='/Friends' element={<Friends friendsData={state.sidebar.sidebarFriends}/>} />
+            <Route path='/Friends' element={<Friends friendsData={props.state.sidebar.sidebarFriends}/>} />
           </Routes>
         </div>
       </div>
