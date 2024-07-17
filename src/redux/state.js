@@ -1,3 +1,5 @@
+import {rerenderEntireTree} from '../render';
+
 let state = {
   profilePage: {
     posts: [
@@ -6,6 +8,8 @@ let state = {
       { id: 3, message: 'It\'s my first project', likesCount: 35 },
       { id: 4, message: 'It\'s my first project', likesCount: 45 },
     ],
+    newPostText: '',
+
     dialogsData: [
       { id: 1, name: 'Dimych', image:'https://img.freepik.com/premium-vector/man-avatar-profile-round-icon_24640-14044.jpg?w=360'},
       { id: 2, name: 'Andrey', image:'https://img.freepik.com/premium-vector/man-avatar-profile-round-icon_24640-14044.jpg?w=360' },
@@ -32,12 +36,22 @@ let state = {
   }
 };
 
-export let addPost = (postMessage) => {
+window.state = state;
+
+export let addPost = () => {
   let newPost = {
-    id: 5,
-    message: postMessage,
+    id: state.profilePage.posts.length + 1,
+    message: state.profilePage.newPostText,
     likesCount: 0
   }; 
-  state.profilePage.posts.push();
+  state.profilePage.posts.push(newPost);
+  state.profilePage.newPostText = '';
+  rerenderEntireTree(state);
 }
+
+export let updateNewPostText = (newText) => {
+  state.profilePage.newPostText = newText;
+  rerenderEntireTree(state);
+}
+
 export default state;
