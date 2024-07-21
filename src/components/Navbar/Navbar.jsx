@@ -1,11 +1,10 @@
 import React from 'react';
 import n from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
-import Friends from '../Friends/Friends'; // Импортируем компонент Friends
-import state from '../../redux/state'; // Импортируем состояние
+import Friends from '../Friends/Friends';
 
-const Navbar = () => {
-    const friendsData = state.sidebar.sidebarFriends; // Получаем массив друзей из состояния
+const Navbar = (props) => {
+    const friendsData = props.sidebar.sidebarFriends;
 
     return (
         <nav className={n.nav}>
