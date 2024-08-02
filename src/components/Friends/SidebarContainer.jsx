@@ -3,7 +3,7 @@ import Friends from "./Friends";
 
 let mapStateToProps = (state) => {
     return {
-        sidebar: state.sidebar
+        sidebar: state.sidebar.sidebarFriends
     }
   };
 

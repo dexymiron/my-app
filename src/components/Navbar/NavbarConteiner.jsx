@@ -5,7 +5,7 @@ let mapStateToProps = (state) => {
     return {
         sidebarFriends: state.sidebar.sidebarFriends
     }
-  };
+  }
 
 const NavbarContainer = connect (mapStateToProps)(Navbar);
 
