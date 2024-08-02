@@ -1,6 +1,5 @@
 import React from 'react';
 import n from './ProfileInfo.module.css';
-import MyPosts from '../MyPosts/MyPosts';
 
 const ProfileInfo = (props) => {
   return (

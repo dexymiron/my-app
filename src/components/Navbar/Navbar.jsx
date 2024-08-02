@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 import Friends from '../Friends/Friends';
 
 const Navbar = (props) => {
-    const friendsData = props.sidebar.sidebarFriends;
-
+    const friendsData = props.sidebarFriends;
+debugger;
     return (
         <nav className={n.nav}>
             <div className={n.item}>
