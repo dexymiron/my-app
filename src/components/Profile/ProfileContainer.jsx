@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getProfilePage } from "../../redux/profile-reducer";
 import { useParams } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 // Функция withRouter для передачи параметров маршрута
 function withRouter(Component) {
@@ -41,14 +42,13 @@ class ProfileContainer extends React.Component {
   }
 }
 
-let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
-
 // Подключение состояния из Redux
-const mapStateToProps = (state) => ({
+let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
 });
 
-// Экспортируем компонент, подключенный к Redux и маршрутизации
-export default connect(mapStateToProps, { getProfilePage })(
-  withRouter(AuthRedirectComponent)
-);
+export default compose(
+  connect(mapStateToProps, { getProfilePage }),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer);
