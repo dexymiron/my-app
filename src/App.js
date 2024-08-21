@@ -10,6 +10,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import SidebarContainer from './components/Friends/SidebarContainer';
 import NavbarContainer from './components/Navbar/NavbarConteiner';
 import UsersContainer from './components/Users/UsersContainer';
+import LoginPage from './components/Login/LoginPage';
 
 const App = (props) => {
   return (
@@ -27,6 +28,7 @@ const App = (props) => {
             <Route path='/settings' element={<Settings />} />
             <Route path='/friends' element={<SidebarContainer />} />
             <Route path='/users' element={<UsersContainer />} />
+            <Route path='/login' element={<LoginPage />} />
           </Routes>
         </div>
       </div>
