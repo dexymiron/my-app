@@ -1,27 +1,51 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Profile from "./Profile";
-import axios from "axios";
 import { connect } from "react-redux";
-import { setUserProfile } from "../../redux/profile-reducer";
+import { getProfilePage } from "../../redux/profile-reducer";
 import { useParams } from "react-router-dom";
 
-const ProfileContainer = (props) => {
-  const { userId } = useParams();
+// Функция withRouter для передачи параметров маршрута
+function withRouter(Component) {
+  return function ComponentWithRouterProps(props) {
+    const match = { params: useParams() }; // Получаем параметры маршрута
+    return <Component {...props} match={match} />;
+  };
+}
 
-  useEffect(() => {
-    const id = userId || 1;
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/profile/` + id)
-      .then((response) => {
-        props.setUserProfile(response.data);
-      });
-  }, [userId, setUserProfile]);
+class ProfileContainer extends React.Component {
+  // Логика для получения userId и вызова API
+  redirectToMainUser() {
+    let userId = this.props.match.params.userId;
+    if (!userId) {
+      userId = 31253; // Устанавливаем ID по умолчанию
+    }
+    this.props.getProfilePage(userId); // Запрашиваем данные профиля
+  }
 
-  return <Profile {...props} profile={props.profile} />;
-};
+  // Метод вызывается при монтировании компонента
+  componentDidMount() {
+    this.redirectToMainUser();
+  }
 
+  // Метод вызывается при обновлении компонента
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.userId !== prevProps.match.params.userId) {
+      this.redirectToMainUser();
+    }
+  }
+
+  // Метод render возвращает JSX
+  render() {
+    return <Profile profile={this.props.profile} />;
+  }
+}
+
+// Подключение состояния из Redux
 const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
 });
 
-export default connect(mapStateToProps, { setUserProfile })(ProfileContainer);
+// Экспортируем компонент, подключенный к Redux и маршрутизации
+export default connect(mapStateToProps, { getProfilePage })(
+  withRouter(ProfileContainer)
+);

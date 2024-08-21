@@ -13,10 +13,20 @@ const ProfileInfo = (props) => {
         <img
           className={n.image}
           src="https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg"
+          alt="Background"
         />
       </div>
       <div className={n.descriptionBlock}>
-        <img src={props.profile.photos.large} />
+        {props.profile.photos?.large ? (
+          <img src={props.profile.photos.large} alt="Profile" />
+        ) : (
+          <img
+            src="https://via.placeholder.com/150"
+            alt="Default avatar"
+            className={n.defaultAvatar}
+          />
+        )}
+        <p>{props.profile.fullName}</p>
       </div>
     </div>
   );

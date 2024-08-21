@@ -1,4 +1,5 @@
-import axios from "axios"
+import axios from "axios";
+import { useEffect } from "react";
 
 const instance = axios.create({
     withCredentials: true,
@@ -15,36 +16,34 @@ export const usersAPI = {
     .then(responce => { 
         return responce.data;
     });
-    }
-}
-
-
-export const deleteUserAPI = {
-    deleteUsers(id) {
+    },
+    follow(userId) {
         return instance
-        .delete(`follow/${id}`)
+        .post(`follow/${userId}`)
     .then(responce => { 
         return responce.data;
         });
-    }
-}
-
-export const postUserAPI = {
-    postUsers(id) {
+    },
+    unfollow(userId) {
         return instance
-        .post(`follow/${id}`)
+        .delete(`follow/${userId}`)
     .then(responce => { 
         return responce.data;
         });
-    }
+    },
+    
+    getProfile(userId) {
+        return instance
+          .get(`profile/${userId}`)
+    },
+    
 }
 
+    
 export const authAPI = {
-    getUsers() {
-        return instance
-          .get(`auth/me`)
-    .then(responce => {
-        return responce.data;
-    });
-    }
+    me() {
+    return instance
+      .get(`auth/me`);
+    },
 }
+
