@@ -1,7 +1,11 @@
 import React from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
-import { getProfilePage } from "../../redux/profile-reducer";
+import {
+  getProfilePage,
+  getStatus,
+  updateStatus,
+} from "../../redux/profile-reducer";
 import { useParams } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
@@ -21,7 +25,8 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = 31253; // Устанавливаем ID по умолчанию
     }
-    this.props.getProfilePage(userId); // Запрашиваем данные профиля
+    this.props.getProfilePage(userId);
+    this.props.getStatus(userId);
   }
 
   // Метод вызывается при монтировании компонента
@@ -38,17 +43,24 @@ class ProfileContainer extends React.Component {
 
   // Метод render возвращает JSX
   render() {
-    return <Profile profile={this.props.profile} />;
+    return (
+      <Profile
+        profile={this.props.profile}
+        status={this.props.status}
+        updateStatus={this.props.updateStatus}
+      />
+    );
   }
 }
 
 // Подключение состояния из Redux
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
+  status: state.profilePage.status,
 });
 
 export default compose(
-  connect(mapStateToProps, { getProfilePage }),
+  connect(mapStateToProps, { getProfilePage, getStatus, updateStatus }),
   withRouter,
   withAuthRedirect
 )(ProfileContainer);
