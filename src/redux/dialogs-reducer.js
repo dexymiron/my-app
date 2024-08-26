@@ -1,4 +1,3 @@
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND-MESSAGE';
 
 let initialState = {
@@ -16,25 +15,15 @@ let initialState = {
     { id: 3, name: 'Sveta', image: 'https://img.freepik.com/premium-vector/woman-avatar-profile-round-icon_24640-14042.jpg?w=360' },
     { id: 4, name: 'Victor', image: 'https://img.freepik.com/premium-vector/man-avatar-profile-round-icon_24640-14044.jpg?w=360' },
     { id: 5, name: 'Valera', image: 'https://img.freepik.com/premium-vector/man-avatar-profile-round-icon_24640-14044.jpg?w=360' }
-  ],
-
-  newMessageBody: ""
+  ], 
 }
 
 const dialogsReducer = (state = initialState, action) => { 
   switch (action.type) {
-    case UPDATE_NEW_MESSAGE_BODY:
+    case SEND_MESSAGE: 
+      let body = action.newMessageBody;
       return {
         ...state,
-        newMessageBody: action.body
-      };
-      
-
-    case SEND_MESSAGE:
-      let body = state.newMessageBody;
-      return {
-        ...state,
-        newMessageBody: '',
         messagesData: [...state.messagesData, {id: 6, message: body}]
       };
       
@@ -43,7 +32,6 @@ const dialogsReducer = (state = initialState, action) => {
   }
 }
 
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE });
-export const updateNewMessageBodyCreator = (body) => ({ type: UPDATE_NEW_MESSAGE_BODY, body });
+export const sendMessageCreator = (newMessageBody) => ({ type: SEND_MESSAGE, newMessageBody});
 
 export default dialogsReducer;
