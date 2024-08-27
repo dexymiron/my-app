@@ -8,7 +8,13 @@ const Header = (props) => {
       <img src="https://media.contented.ru/wp-content/uploads/2022/06/logotip.png"></img>
 
       <div className={n.loginBlock}>
-        {props.isAuth ? props.login : <NavLink to={"/login"}>Login</NavLink>}
+        {props.isAuth ? (
+          <div>
+            {props.login} - <button onClick={props.logout}>Log out</button>
+          </div>
+        ) : (
+          <NavLink to={"/login"}>Login</NavLink>
+        )}
       </div>
     </header>
   );
