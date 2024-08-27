@@ -23,12 +23,14 @@ class ProfileContainer extends React.Component {
   redirectToMainUser() {
     let userId = this.props.match.params.userId;
     if (!userId) {
-      userId = 31253; // Устанавливаем ID по умолчанию
+      userId = this.props.authorizedUserId;
+
+      /*  console.log("userId:", userId);
+      console.log("authorizedUserId:", this.props.authorizedUserId);  */
     }
     this.props.getProfilePage(userId);
     this.props.getStatus(userId);
   }
-
   // Метод вызывается при монтировании компонента
   componentDidMount() {
     this.redirectToMainUser();
@@ -57,6 +59,8 @@ class ProfileContainer extends React.Component {
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
+  authorizedUserId: state.auth.userId,
+  isAuth: state.auth.isAuth,
 });
 
 export default compose(
