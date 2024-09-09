@@ -11,8 +11,24 @@ import SidebarContainer from './components/Friends/SidebarContainer';
 import NavbarContainer from './components/Navbar/NavbarConteiner';
 import UsersContainer from './components/Users/UsersContainer';
 import LoginPage from './components/Login/LoginPage';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { initializeApp } from './redux/app-reducer';
+import Preloader from './components/common/preloader/preloader';
 
-const App = (props) => {
+
+class App extends React.Component {
+
+  componentDidMount() {
+    this.props.initializeApp();
+  }
+
+  render() {
+
+    if (!this.props.initialized) {
+      return <Preloader />
+    }
+
   return (
     <BrowserRouter>
       <div className='App-wrapper'>
@@ -35,5 +51,12 @@ const App = (props) => {
     </BrowserRouter>
   );
 }
+}
 
-export default App;
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized
+})
+
+export default compose(connect(mapStateToProps, { initializeApp }))(
+  App
+);
