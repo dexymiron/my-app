@@ -4,23 +4,16 @@ import Preloader from "../../common/preloader/preloader";
 import ProfileStatus from "./ProfileStatus";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
-const ProfileInfo = (props) => {
-  if (!props.profile) {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
+  if (!profile) {
     return <Preloader />;
   }
 
   return (
     <div>
-      <div>
-        {/*  <img
-          className={n.image}
-          src="https://media.wired.com/photos/598e35fb99d76447c4eb1f28/master/pass/phonepicutres-TA.jpg"
-          alt="Background"
-        /> */}
-      </div>
       <div className={n.descriptionBlock}>
-        {props.profile.photos?.large ? (
-          <img src={props.profile.photos.large} alt="Profile" />
+        {profile.photos?.large ? (
+          <img src={profile.photos.large} alt="Profile" />
         ) : (
           <img
             src="https://via.placeholder.com/150"
@@ -28,11 +21,8 @@ const ProfileInfo = (props) => {
             className={n.defaultAvatar}
           />
         )}
-        <p>{props.profile.fullName}</p>
-        <ProfileStatusWithHooks
-          status={props.status}
-          updateStatus={props.updateStatus}
-        />
+        <p>{profile.fullName}</p>
+        <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
       </div>
     </div>
   );
