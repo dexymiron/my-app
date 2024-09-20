@@ -1,3 +1,12 @@
 .image {
     width: 1000px;
   }
+
+  .defaultAvatar {
+    width: 150px;
+  }
+
+  .avatar {
+    width: 150px;
+    object-fit: cover;
+  }
