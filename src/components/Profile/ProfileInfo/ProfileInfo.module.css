@@ -10,3 +10,11 @@
     width: 150px;
     object-fit: cover;
   }
+
+  .contact {
+    padding-left: 10px;
+  }
+
+  .formSummaryError {
+    border: 1px solid red;
+  }

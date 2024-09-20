@@ -9,6 +9,7 @@ const Profile = (props) => {
         savePhoto={props.savePhoto}
         isOwner={props.isOwner}
         profile={props.profile}
+        saveProfile={props.saveProfile}
         status={props.status}
         updateStatus={props.updateStatus}
       />
