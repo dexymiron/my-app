@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import HeaderContainer from './components/Header/HeaderContainer';
 
-import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
@@ -24,11 +24,17 @@ const ProfileContainer = lazy(() => import('./components/Profile/ProfileContaine
 
 
 class App extends React.Component {
-
+  catchAllUnhandledErrors = (promiseRejectionEvent) => {
+    alert("Some Error Occured");
+    //console.error(promiseRejectionEvent);
+  }
   componentDidMount() {
     this.props.initializeApp();
+    window.addEventListener("unhandlerejection", this.catchAllUnhandledErrors) 
   }
-
+  componentWillUnmount() {
+    window.removeEventListener("unhandlerejection", this.catchAllUnhandledErrors) 
+  }
   render() {
 
     if (!this.props.initialized) {
@@ -43,6 +49,7 @@ class App extends React.Component {
         <div className='app-wrapper-content'>
         <Suspense fallback={<Preloader />}>
             <Routes>
+              <Route path='/' element={<LoginPage />} /> {/* MAIN PAGE */}
               <Route path='/dialogs' element={<DialogsContainer />} />
               <Route path='/profile/:userId?' element={<ProfileContainer />} />
               <Route path="/profile" element={<ProfileContainer isMain={true}/>} /> 
@@ -52,6 +59,7 @@ class App extends React.Component {
               <Route path='/friends' element={<SidebarContainer />} />
               <Route path='/users' element={<UsersContainer />} />
               <Route path='/login' element={<LoginPage />} />
+              <Route path='*' element={<div>404 NOT FOUND</div>} />
             </Routes>
           </Suspense>
         </div>
