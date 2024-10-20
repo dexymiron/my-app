@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+import { PhotosType, ProfileType, UserType } from "../redux/types/types";
 
 const instance = axios.create({
     withCredentials: true,
@@ -8,24 +9,38 @@ const instance = axios.create({
       },
 });
 
+type MyUsersType = {
+  items: UserType[]
+  totalCount: number
+  error: string
+}
+
+type MyFollowUserType = {
+  data: {
+    userId: number
+  }
+  resultCode: ResultCodesEnum | ResultCodeForCaptcha
+  messages: Array<string>
+}
+
 export const usersAPI = {
     getUsers(currentPage:number, pageSize:number) {
         return instance
-          .get(`users?page=${currentPage}&count=${pageSize}`)
+          .get<MyUsersType>(`users?page=${currentPage}&count=${pageSize}`)
     .then(responce => { 
         return responce.data;
     });
     },
     follow(userId:number) {
         return instance
-        .post(`follow/${userId}`)
+        .post<MyFollowUserType>(`follow/${userId}`)
     .then(responce => { 
         return responce.data;
         });
     },
     unfollow(userId:number) {
         return instance
-        .delete(`follow/${userId}`)
+        .delete<MyFollowUserType>(`follow/${userId}`)
     .then(responce => { 
         return responce.data;
         });
@@ -38,54 +53,104 @@ export const usersAPI = {
     
 };
 
+type MyGetProfileType = {
+  userId: number
+} & ProfileType;
+
+type MyPhotosType = {
+  data: {
+    photos: PhotosType
+  }
+  resultCode: ResultCodesEnum
+  messages: Array<string>
+}
+
 export const profileAPI = {
     getProfile(userId:number) {
         return instance
-          .get(`profile/${userId}`)
+          .get<MyGetProfileType>(`profile/${userId}`)
+          .then(res => res.data)
     },
     getStatus(userId:number) {
         return instance
-          .get(`profile/status/${userId}`)
+          .get<string>(`profile/status/${userId}`)
+          .then(res => res.data)
     },
-    updateStatus(status:string | null) {
+    updateStatus(status:string) {
         return instance
-          .put(`profile/status`, {status: status});
+          .put<MyResponceType>(`profile/status`, {status: status});
     },
     savePhoto(photoFile: any) {
         var formData = new FormData();
         formData.append("image", photoFile);
         return instance
-          .put(`profile/photo`, formData, {
+          .put<MyPhotosType>(`profile/photo`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
-          });
+          })
+          .then(res => res.data);
     },
-    saveProfile(profile:any) {
-      return instance.put(`profile`, profile );
+    saveProfile(profile:ProfileType) {
+      return instance.put<MyResponceType>(`profile`, profile )
+      .then(res => res.data);
     }
     
 };
-    
+
+export enum ResultCodesEnum {
+  Success = 0,
+  Error = 1,
+  CaptchaIsRequired = 10
+}
+
+export enum ResultCodeForCaptcha {
+  CaptchaIsRequired = 10
+}
+
+type MyResponceType = {
+  data: {
+    id: number
+    email: string
+    login: string
+  }
+  resultCode: ResultCodesEnum
+  messages: Array<string>
+}
+
+type LoginRespoceType = {
+  data: {
+    userId: number
+  }
+  resultCode: ResultCodesEnum | ResultCodeForCaptcha
+  messages: Array<string>
+}
+
 export const authAPI = {
     me() {
     return instance
-      .get(`auth/me`);
+      .get<MyResponceType>(`auth/me`).then(res => res.data);
     },
-    login(email:string, password:string, rememberMe = false, captcha = null) {
+    login(email:string, password: string, rememberMe: boolean = false, captcha: string | null = null) {
         return instance
-          .post(`auth/login`, {email, password, rememberMe, captcha});
+          .post<LoginRespoceType>(`auth/login`, {email, password, rememberMe, captcha})
+          .then(res => res.data);
         },
     logout() {
             return instance
-              .delete(`auth/login`);
+              .delete<LoginRespoceType>(`auth/login`);
             },
 };
+
+type getCaptchaUrlType = {
+  url: string
+}
 
 export const securityAPI = {
   getCaptchaUrl() {
   return instance
-    .get(`security/get-captcha-url`);
+    .get<getCaptchaUrlType>(`security/get-captcha-url`)
+    .then(res => res.data);
   },
   
 };

@@ -1,4 +1,4 @@
-import { profileAPI, usersAPI } from "../api/api";
+import { profileAPI, ResultCodesEnum, usersAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
 import { ProfileType, PostType, PhotosType } from "./types/types";
 
@@ -87,45 +87,45 @@ export const savePhotoSuccess = (photos:PhotosType):savePhotoSuccess => ({ type:
 
 export const getProfilePage = (userId:number) => {
   return async (dispatch:any) => {
-    const responce = await usersAPI.getProfile(userId)
-        dispatch(setUserProfile(responce.data));
+    const meData = await usersAPI.getProfile(userId)
+        dispatch(setUserProfile(meData));
   }
 }
 
 export const getStatus = (userId:number) => {
   return async (dispatch:any) => {
-    let responce = await profileAPI.getStatus(userId)
+    let meData = await profileAPI.getStatus(userId)
     
-      dispatch(setStatus(responce.data));
+      dispatch(setStatus(meData));
   }
 }
 
 export const updateStatus = (status:string) => async (dispatch:any) => {
   try {
     let responce = await profileAPI.updateStatus(status)
-      if(responce.data.resultCode === 0) {
+      if(responce.data.resultCode === ResultCodesEnum.Success) {
       dispatch(setStatus(status)) ;
     }
   } catch (error) {
   }
 }
 
-export const savePhoto = (file:any) => async (dispatch:any) => {
-  let responce = await profileAPI.savePhoto(file)
-      if(responce.data.resultCode === 0) {
-      dispatch(savePhotoSuccess(responce.data.data.photos)) ;
+export const savePhoto = (file:PhotosType) => async (dispatch:any) => {
+  let myData = await profileAPI.savePhoto(file)
+      if(myData.resultCode === ResultCodesEnum.Success) {
+      dispatch(savePhotoSuccess(myData.data.photos));
         }
 }
 
 export const saveProfile = (profile:ProfileType) => async (dispatch:any, getState:any) => {
   const userId = getState().auth.userId;
-  const responce = await profileAPI.saveProfile(profile);
-  if (responce.data.resultCode === 0) {
+  const myData = await profileAPI.saveProfile(profile);
+  if (myData.resultCode === ResultCodesEnum.Success) {
     dispatch(getProfilePage(userId));
   } else {
     // Передача ошибки через stopSubmit и отклонение промиса
-    dispatch(stopSubmit("edit-profile", { _error: responce.data.messages[0] }));
-    return Promise.reject(responce.data.messages[0]);
+    dispatch(stopSubmit("edit-profile", { _error: myData.messages[0] }));
+    return Promise.reject(myData.messages[0]);
   }
 };
 
