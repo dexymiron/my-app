@@ -1,0 +1,60 @@
+* {
+  font-family: Helvetica Neue;
+  box-sizing: border-box;
+}
+
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #E4E0E1;
+}
+
+.App-wrapper {
+  margin: 0 auto;
+
+  display: grid;
+  max-width: 1200px;
+  width: 100%;
+
+ 
+
+  grid-template-areas: 
+  "h h"
+  "n c"
+  "f f"
+  ;
+  grid-template-columns: 2fr 10fr;
+  
+}
+
+.app-wrapper-content {
+  margin-top: 5px;
+  min-height: 75vh;
+  grid-area: c;
+  background-color: #E0D7C7;
+  position: relative; /* для кнопки Edit Button */ 
+
+}
+
+/* PRELOADER INITIALIZATION*/
+
+.main-wrapper {
+  display: none;
+}
+
+.App-wrapper, .Footer {
+  display: none; 
+}
+
+.initialized{
+  display: flex; 
+}
+
+.initialized .App-wrapper  {
+  display: grid 
+}
+
+.initialized .Footer {
+  display: flex;
+}

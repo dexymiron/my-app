@@ -1,7 +1,6 @@
 import React from "react";
-import n from "./ProfileInfo.module.css";
+import n from "./ProfileInfo.module.scss";
 import Preloader from "../../common/preloader/preloader";
-import ProfileStatus from "./ProfileStatus";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/images/user-no-photo-svg.svg";
 import { useState } from "react";
@@ -38,36 +37,72 @@ const ProfileInfo = ({
     if (e.target.files.length) savePhoto(e.target.files[0]);
   };
 
+  const cancelEdit = () => {
+    setEditMode(false); // Отмена режима редактирования
+  };
+
   return (
-    <div>
-      <div className={n.descriptionBlock}>
-        {profile.photos?.large ? (
-          <img src={profile.photos.large} alt="Profile" className={n.avatar} />
-        ) : (
-          <img
-            src={userPhoto}
-            alt="Default avatar"
-            className={n.defaultAvatar}
-          />
-        )}
-        <p>{profile.fullName}</p>
+    <div className={n.profileDataFormWrapper}>
+      <div className={n.imageWithChangeWrapper}>
         {/* Если это твой аккаунт отобрази изменение img */}
-        {isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
+        <div className={n.bntChangeAvatar}>
+          <label htmlFor="imageInput" className={n.chooseAvatarLabel}>
+            <div className={n.imageBlock}>
+              {profile.photos?.large ? (
+                <img
+                  src={profile.photos.large}
+                  alt="Profile"
+                  className={n.avatar}
+                />
+              ) : (
+                <img
+                  src={userPhoto}
+                  alt="Default avatar"
+                  className={n.defaultAvatar}
+                />
+              )}
+            </div>
+          </label>
+
+          {isOwner && (
+            <input
+              className={n.chooseImage}
+              id="imageInput"
+              type={"file"}
+              onChange={onMainPhotoSelected}
+            />
+          )}
+        </div>
+        <ProfileStatusWithHooks
+          status={status}
+          updateStatus={updateStatus}
+          className={n.profileStatus}
+        />
+      </div>
+
+      <div className={n.NameStatusFormWrapper}>
+        <div className={n.profileName}>
+          <p>{profile.fullName}</p>
+        </div>
+
         {/* Отображение EditMode */}
-        {editMode ? (
-          <ProfileDataForm
-            initialValues={profile}
-            profile={profile}
-            onSubmit={onSubmit}
-          />
-        ) : (
-          <ProfileData
-            goToEditMode={() => setEditMode(true)}
-            profile={profile}
-            isOwner={isOwner}
-          />
-        )}
-        <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
+
+        <div className={n.profileDataForm}>
+          {editMode ? (
+            <ProfileDataForm
+              initialValues={profile}
+              profile={profile}
+              onSubmit={onSubmit}
+              cancelEdit={cancelEdit}
+            />
+          ) : (
+            <ProfileData
+              goToEditMode={() => setEditMode(true)}
+              profile={profile}
+              isOwner={isOwner}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
@@ -75,37 +110,50 @@ const ProfileInfo = ({
 
 const ProfileData = ({ profile, isOwner, goToEditMode }) => {
   return (
-    <div>
-      {isOwner && (
-        <div>
-          <button onClick={goToEditMode}>edit</button>
+    <div className={n.profileInfo}>
+      <div className={n.editBtnWrapper}>
+        {isOwner && (
+          <div>
+            <button className={n.editProfileBtn} onClick={goToEditMode}>
+              Edit Profile
+            </button>
+          </div>
+        )}
+      </div>
+      <div className={n.profileInfoForm}>
+        <div className={n.leftColForm}>
+          <div className={n.leftColFormNameContainer}>
+            <b className={n.leftColFormName}>Full name</b>: {profile.fullName}
+          </div>
+          <div>
+            <b>Looking for a job</b>: {profile.lookingForAJob ? "yes" : "no"}
+          </div>
+          {profile.lookingForAJob && (
+            <div>
+              <b>My professional skills</b>: {profile.lookingForAJobDescription}
+            </div>
+          )}
+          <div>
+            <b>About me</b>: {profile.aboutMe}
+          </div>
         </div>
-      )}
-      <div>
-        <b>Full name</b>: {profile.fullName}
-      </div>
-      <div>
-        <b>Looking for a job</b>: {profile.lookingForAJob ? "yes" : "no"}
-      </div>
-      {profile.lookingForAJob && (
-        <div>
-          <b>My professional skills</b>: {profile.lookingForAJobDescription}
+        <div className={n.ContactsFormContainer}>
+          <div className={n.ContactsFormTitleContainer}>
+            <b className={n.ContactsFormTitle}>Contacts:</b>
+          </div>{" "}
+          {Object.keys(profile.contacts).map((key) => {
+            if (key === "vk") {
+              return null;
+            } /* Исключили VK */
+            return (
+              <Contact
+                key={key}
+                contactTitle={key}
+                contactValue={profile.contacts[key]}
+              />
+            );
+          })}
         </div>
-      )}
-      <div>
-        <b>About me</b>: {profile.aboutMe}
-      </div>
-      <div>
-        <b>Contacts</b>:{" "}
-        {Object.keys(profile.contacts).map((key) => {
-          return (
-            <Contact
-              key={key}
-              contactTitle={key}
-              contactValue={profile.contacts[key]}
-            />
-          );
-        })}
       </div>
     </div>
   );

@@ -1,14 +1,12 @@
-import React from 'react';
-import n from './Settings.module.css'
+import React from "react";
+import n from "./Settings.module.scss";
 
 const Settings = () => {
-    return (
+  return (
     <div>
-      <div>
-        Settings
-      </div>
+      <div>Settings</div>
     </div>
-    )
-}
+  );
+};
 
 export default Settings;

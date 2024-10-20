@@ -1,54 +1,29 @@
 import React from "react";
-import n from "./MyPosts.module.css";
+import n from "./MyPosts.module.scss";
 import Post from "./Post/Post";
-import { Field, reduxForm } from "redux-form";
-import {
-  maxLengthCreator,
-  requiredField,
-} from "../../../utils/validators/validators";
-import { Textarea } from "../../common/FormsControls/FormsControls";
+import userNoPhoto from "../../../assets/images/user-no-photo.png";
 
-const maxLength10 = maxLengthCreator(10);
-
-let AddNewPostForm = (props) => {
-  return (
-    <form onSubmit={props.handleSubmit}>
-      <div>
-        <div>
-          <Field
-            name="newPostText"
-            component={Textarea}
-            validate={[requiredField, maxLengthCreator(10)]}
-            placeholder={"Post message"}
-          />
-        </div>
-        <div>
-          <button>Добавить пост</button>
-        </div>
-      </div>
-    </form>
-  );
-};
-
-let AddNewPostFormRedux = reduxForm({ form: "ProfileAddNewPostForm" })(
-  AddNewPostForm
-);
+import AddNewPostForm from "./AddNewPostForm";
 
 const MyPosts = React.memo((props) => {
   let postsElements = props.posts.map((p) => (
     <Post key={p.id} message={p.message} likesCount={p.likesCount} />
   ));
 
-  let newPostElement = React.createRef();
-
-  let onAddPost = (values) => {
-    props.addPost(values.newPostText);
+  let onAddPost = (newPostText) => {
+    props.addPost(newPostText);
   };
 
   return (
-    <div className={n.postsblock}>
-      <h3>Мои посты</h3>
-      <AddNewPostFormRedux onSubmit={onAddPost} />
+    <div className={n.postsBlock}>
+      <div className={n.postsImageAndHeader}>
+        <img className={n.postsImage} src={userNoPhoto} alt="post-image"></img>
+        <h3 className={n.postsHeader}>My Posts</h3>
+      </div>
+      <div className={n.InputWithButton}>
+        <AddNewPostForm onSubmit={onAddPost} addPost={onAddPost} />
+      </div>
+
       <div className={n.posts}>{postsElements}</div>
     </div>
   );

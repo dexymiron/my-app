@@ -1,0 +1,20 @@
+.profileStatus {
+    max-width: 150px;
+    font-size: 18px;
+    font-style: italic;
+    word-wrap: break-word;
+    margin-top: 10px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.statusStatus {
+    font-style: normal;
+}
+
+.statusEditModeInput {
+    max-width: 135px;
+}

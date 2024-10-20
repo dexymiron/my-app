@@ -1,0 +1,123 @@
+@import '../../scss/base/animations';
+
+.header {
+  grid-area: h;
+  background-color: #211C1D;
+}
+
+.header::after {
+  content: "";
+    background: linear-gradient(to right, #ffffff 0%, #211C1D 50%, #ffffff 100%);
+    height: 5px;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+.header1200 {
+  max-width: 1200px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+}
+
+.loginBlock {
+  color: wheat;
+  margin-left: auto;
+}
+
+.loginBlock a {
+  color: white;
+  font-size: 21px;
+}
+
+.logoBlock {
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  max-width: 200px;
+  height: 60px;
+}
+
+.logoText {
+  color: rgb(199, 199, 199);
+}
+
+
+.loginBlock {
+ display: flex;
+ align-items: center;
+}
+
+.profileImage {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 7px;
+  border: 3px solid rgba(255, 255, 255, 0.6);
+}
+
+
+/* ==============================================BUTTON STYLE */
+
+
+.logOutBtn {
+  display: inline-flex;
+  height: 40px;
+  width: 120px;
+  border: 2px solid #BFC0C0;
+  margin: 20px 20px 20px 20px;
+  color: #BFC0C0;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+
+  position: relative;
+  /* overflow: hidden; */
+  cursor: pointer;
+}
+
+.logOutText {
+  color: #BFC0C0;
+  letter-spacing: 1px;
+
+  position: relative;
+  left: 0;
+  transition: all .35s ease-Out;
+}
+
+
+.LogOutimgContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  width: 100%;
+  height: 100%;
+  background: #BFC0C0;
+  left: -200px;
+  position: absolute;
+  padding: 0;
+  transition: all .35s ease-Out;
+  bottom: 0;
+}
+
+.logOutImg {
+  width: 20px;
+  height: auto;
+}
+
+.logOutBtn:hover .LogOutimgContainer {
+  left: 0;
+}
+
+.logOutBtn:hover .logOutText   {
+  left: 150px;
+}

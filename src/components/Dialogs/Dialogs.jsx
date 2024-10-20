@@ -1,5 +1,5 @@
 import React from "react";
-import n from "./Dialogs.module.css";
+import n from "./Dialogs.module.scss";
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 import { Navigate } from "react-router-dom";
@@ -43,7 +43,7 @@ const maxLength50 = maxLengthCreator(50);
 const AddMesssageForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
-      <div>
+      <div className={n.messageForm}>
         <div>
           <Field
             name="newMessageBody"
@@ -51,10 +51,9 @@ const AddMesssageForm = (props) => {
             validate={[requiredField, maxLength50]}
             placeholder="Введите своё сообщение"
           />
-        </div>
-        <div>
           <button>Отправить</button>
         </div>
+        <div></div>
       </div>
     </form>
   );

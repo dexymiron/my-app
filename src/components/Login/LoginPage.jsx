@@ -4,7 +4,7 @@ import { requiredField } from "../../utils/validators/validators";
 import { connect } from "react-redux";
 import { login } from "../../redux/auth-reducer";
 import { Navigate } from "react-router-dom";
-import styles from "./../common/FormsControls/FormsControls.module.css";
+import styles from "./../common/FormsControls/FormsControls.module.scss";
 import { reduxForm } from "redux-form";
 
 const LoginPage = ({ handleSubmit, error, captchaUrl }) => {
@@ -23,7 +23,7 @@ const LoginPage = ({ handleSubmit, error, captchaUrl }) => {
         "remember me"
       )}
 
-      {captchaUrl && <img src={captchaUrl} />}
+      {captchaUrl && <img src={captchaUrl} alt="captcha" />}
 
       {captchaUrl &&
         createField(

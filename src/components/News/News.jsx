@@ -1,14 +1,12 @@
-import React from 'react';
-import n from './News.module.css'
+import React from "react";
+import n from "./News.module.scss";
 
 const News = () => {
-    return ( 
+  return (
     <div>
-      <div>
-        News
-      </div>
-  </div>
-    )
-}
+      <div>News</div>
+    </div>
+  );
+};
 
 export default News;
