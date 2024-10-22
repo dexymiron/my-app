@@ -1,0 +1,34 @@
+.formControl.error span
+{
+    color: red;
+}
+
+.formSummaryError {
+    border: red 1px solid;
+    padding: 5px;
+    color: rosybrown;
+}
+
+.emailInput {
+    cursor: pointer;
+}
+
+
+
+.loginBtn {
+    background-color: #56453E;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 1px solid rgba(0, 0, 0, 1);
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.loginBtn:hover {
+    background: #211C1D !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  }

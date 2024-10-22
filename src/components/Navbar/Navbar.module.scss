@@ -13,19 +13,16 @@
   color: #F1E2AD;
 }
  */
-.itemFriends a {
-  display: grid;
-  color: rgb(250, 250, 250);
-  text-decoration: none;
-  font-size: 30px;
-  padding-top: 50px;
-}
+
 
 /*========================= BUTTON STYLE */
 
 .buttonContainer {
   position: relative;
-  
+}
+
+.itemFriends {
+  margin-top: 45px;
 }
 
 .btn {
@@ -36,6 +33,17 @@
   border: 1px solid rgba(0, 0, 0, 0.3);
   outline: none;
   transition: 1s ease-in-out;
+}
+
+.activeLinkBtn {
+  background-color: rgba(156, 156, 157, 0.4);
+}
+
+a.activeLinkBtn {
+  display: inline-block;  
+  width: 100%;  
+  text-align: center;
+  border: none !important;
 }
 
 .svg {
@@ -49,6 +57,7 @@
   stroke-dashoffset: 150;
   transition: 1s ease-in-out;
 }
+
 
 .btn:hover {
   transition: 1s ease-in-out;

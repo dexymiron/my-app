@@ -8,7 +8,10 @@ const Navbar = (props) => {
   return (
     <nav className={n.nav}>
       <div className={n.buttonContainer}>
-        <NavLink to="/Profile" activeClassName={n.activeLink}>
+        <NavLink
+          to="/Profile"
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+        >
           <button className={n.btn}>
             <Border className={n.svg} />
             <span className={n.btnText}>Profile</span>
@@ -16,7 +19,10 @@ const Navbar = (props) => {
         </NavLink>
       </div>
       <div className={n.buttonContainer}>
-        <NavLink to="/Dialogs" activeClassName={n.activeLink}>
+        <NavLink
+          to="/Dialogs"
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+        >
           <button className={n.btn}>
             <Border className={n.svg} />
             <span className={n.btnText}>Messages</span>
@@ -24,7 +30,10 @@ const Navbar = (props) => {
         </NavLink>
       </div>
       <div className={n.buttonContainer}>
-        <NavLink to="/News" activeClassName={n.activeLink}>
+        <NavLink
+          to="/News"
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+        >
           <button className={n.btn}>
             <Border className={n.svg} />
             <span className={n.btnText}>News</span>
@@ -32,7 +41,10 @@ const Navbar = (props) => {
         </NavLink>
       </div>
       <div className={n.buttonContainer}>
-        <NavLink to="/Music" activeClassName={n.activeLink}>
+        <NavLink
+          to="/Music"
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+        >
           <button className={n.btn}>
             <Border className={n.svg} />
             <span className={n.btnText}>Music</span>
@@ -40,7 +52,10 @@ const Navbar = (props) => {
         </NavLink>
       </div>
       <div className={n.buttonContainer}>
-        <NavLink to="/users" activeClassName={n.activeLink}>
+        <NavLink
+          to="/users"
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+        >
           <button className={n.btn}>
             <Border className={n.svg} />
             <span className={n.btnText}>Users</span>
@@ -48,15 +63,21 @@ const Navbar = (props) => {
         </NavLink>
       </div>
       <div className={n.buttonContainer}>
-        <NavLink to="/Settings" activeClassName={n.activeLink}>
+        <NavLink
+          to="/Settings"
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+        >
           <button className={n.btn}>
             <Border className={n.svg} />
             <span className={n.btnText}>Settings</span>
           </button>
         </NavLink>
       </div>
-      <div className={n.itemFriends}>
-        <NavLink to="/Friends" activeClassName={n.activeLink}>
+      <div className={`${n.buttonContainer} ${n.itemFriends}`}>
+        <NavLink
+          to="/Friends"
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+        >
           <button className={n.btn}>
             <Border className={n.svg} />
             <span className={n.btnText}>Friends</span>

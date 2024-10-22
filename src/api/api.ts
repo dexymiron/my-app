@@ -12,7 +12,7 @@ const instance = axios.create({
 type MyUsersType = {
   items: UserType[]
   totalCount: number
-  error: string
+  error: string | null
 }
 
 type MyFollowUserType = {

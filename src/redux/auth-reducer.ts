@@ -14,87 +14,87 @@ let initialState = {
 
 export type InitialStateType = typeof initialState;
 
-const authReducer = (state = initialState, action:any):InitialStateType => {
+const authReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
     case SET_USER_DATA:
-      case GET_CAPTCHA_URL_SUCCESS:
+    case GET_CAPTCHA_URL_SUCCESS:
       return {
         ...state,
         ...action.payload,
       };
     default:
-    return state;
+      return state;
   }
 };
 
 type setAuthUserDataActionPayloadType = {
-  userId:number | null
-  email:string | null 
-  login:string | null
-  isAuth:boolean | null
+  userId: number | null
+  email: string | null
+  login: string | null
+  isAuth: boolean | null
 }
 
 type setAuthUserData = {
-  type: typeof SET_USER_DATA, 
+  type: typeof SET_USER_DATA,
   payload: setAuthUserDataActionPayloadType
 }
 
-export const setAuthUserData = (userId:number | null, email:string | null, login:string | null , isAuth:boolean):setAuthUserData => ({ type: SET_USER_DATA, payload: {userId, email, login, isAuth} });
+export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): setAuthUserData => ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } });
 
 type getCaptchaUrlSuccessCapchaUrlType = {
   captchaUrl: string
 }
 
 type getCaptchaUrlSuccessType = {
-  type: typeof GET_CAPTCHA_URL_SUCCESS 
+  type: typeof GET_CAPTCHA_URL_SUCCESS
   payload: getCaptchaUrlSuccessCapchaUrlType
 }
 
-export const getCaptchaUrlSuccess = (captchaUrl:string):getCaptchaUrlSuccessType => ({ type: GET_CAPTCHA_URL_SUCCESS, payload: {captchaUrl} });
+export const getCaptchaUrlSuccess = (captchaUrl: string): getCaptchaUrlSuccessType => ({ type: GET_CAPTCHA_URL_SUCCESS, payload: { captchaUrl } });
 
 
-export const getAuthUserData = () => async (dispatch:any) => {
-                  let meData = await authAPI.me();
-                      
-                  if (meData.resultCode === ResultCodesEnum.Success) {
-                      let { id, email, login } = meData.data;
-                      dispatch(setAuthUserData(id, email, login, true));
-                      };
-                  };
+export const getAuthUserData = () => async (dispatch: any) => {
+  let meData = await authAPI.me();
 
-export const login = (email:string, password:string, rememberMe:boolean, captcha: null) => async (dispatch:any) => {
- 
-        let loginData = await authAPI.login(email, password, rememberMe, captcha)
-        
-        if (loginData.resultCode === ResultCodesEnum.Success) {
-        dispatch(getAuthUserData())
-        
-      }
-      else {
-        if (loginData.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
-          dispatch(getCaptchaUrl());
-        }
-        let message = loginData.messages.length > 0 ? loginData.messages[0] : "Some error";
-        dispatch(stopSubmit("login", {_error: message}));
-    };
+  if (meData.resultCode === ResultCodesEnum.Success) {
+    let { id, email, login } = meData.data;
+    dispatch(setAuthUserData(id, email, login, true));
+  };
+};
+
+export const login = (email: string, password: string, rememberMe: boolean, captcha: null) => async (dispatch: any) => {
+
+  let loginData = await authAPI.login(email, password, rememberMe, captcha)
+
+  if (loginData.resultCode === ResultCodesEnum.Success) {
+    dispatch(getAuthUserData())
+
+  }
+  else {
+    if (loginData.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
+      dispatch(getCaptchaUrl());
+    }
+    let message = loginData.messages.length > 0 ? loginData.messages[0] : "Some error";
+    dispatch(stopSubmit("login", { _error: message }));
+  };
 }
 
 
-export const getCaptchaUrl = () => async (dispatch:any) => {
- 
+export const getCaptchaUrl = () => async (dispatch: any) => {
+
   let securityData = await securityAPI.getCaptchaUrl()
   const captchaUrl = securityData.url;
   dispatch(getCaptchaUrlSuccess(captchaUrl));
 }
 
 
-export const logout = () => async (dispatch:any) => {
-          let response = await authAPI.logout()
-          
-          if (response.data.resultCode === ResultCodesEnum.Success) {
-          dispatch(setAuthUserData(null, null, null, false));
-          };
-          }  
+export const logout = () => async (dispatch: any) => {
+  let response = await authAPI.logout()
+
+  if (response.data.resultCode === ResultCodesEnum.Success) {
+    dispatch(setAuthUserData(null, null, null, false));
+  };
+}
 
 
 export default authReducer;
