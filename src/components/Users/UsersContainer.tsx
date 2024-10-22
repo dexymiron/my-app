@@ -4,9 +4,8 @@ import Users from "./Users";
 import {
   follow,
   unfollow,
-  setCurrentPage,
-  toggleFolowingProgress,
   requestUsers,
+  actions,
 } from "../../redux/users-reducer";
 // @ts-ignore
 import Preloader from "../common/preloader/preloader";
@@ -93,8 +92,8 @@ export default compose(
   connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>( mapStateToProps, {
     follow,
     unfollow,
-    setCurrentPage,
-    toggleFolowingProgress,
     requestUsers,
+    toggleFolowingProgress: actions.toggleFolowingProgress,
+    setCurrentPage: actions.setCurrentPage,       
   })
 )(UsersContainer);

@@ -20,7 +20,12 @@ const MyMap = () => {
     <MapContainer
       center={[40.73778760500479, -73.98842674662643]}
       zoom={20}
-      style={{ height: "auto", width: "100%", marginTop: "5px" }}
+      style={{
+        height: "auto",
+        width: "100%",
+        marginTop: "5px",
+        border: "2px solid rgba(0, 0, 0, 0.5",
+      }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
