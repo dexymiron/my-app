@@ -1,13 +1,19 @@
 import React from "react";
 import n from "./Footer.module.scss";
+//@ts-ignore
 import logo from "../../assets/images/logo-img.png";
+//@ts-ignore
 import MyMap from "../common/map/map";
+//@ts-ignore
 import { ReactComponent as IconFb } from "../../assets/images/icons/ion--social-facebook.svg";
+//@ts-ignore
 import { ReactComponent as IconGooglePlus } from "../../assets/images/icons/ion--social-googleplus.svg";
+//@ts-ignore
 import { ReactComponent as IconLd } from "../../assets/images/icons/ion--social-linkedin-outline.svg";
+//@ts-ignore
 import { ReactComponent as IconTw } from "../../assets/images/icons/ion--social-twitter-outline.svg";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <div className={n.FooterWrapperFullWidth}>
       <div className={n.Footer}>

@@ -1,8 +1,18 @@
 import React from "react";
 import n from "./Friends.module.scss";
+//@ts-ignore
 import SwiperComponent from "../common/Swiper/Swiper";
 
-const Friends = (props) => {
+type FriendType = {
+  id: number;
+  name: string;
+};
+
+type FriendsPropsType = {
+  sidebar: Array<FriendType>;
+};
+
+const Friends: React.FC<FriendsPropsType> = (props) => {
   const friendsElements = props.sidebar.map((friend) => (
     <span key={friend.id} className={n.friend}>
       {friend.name}

@@ -1,10 +1,21 @@
 import React from "react";
 import n from "./Header.module.scss";
 import { NavLink } from "react-router-dom";
+//@ts-ignore
 import logo from "../../assets/images/logo-img.png";
+//@ts-ignore
 import logOut from "../../assets/images/icons/logOut.png";
 
-const Header = (props) => {
+export type MapPropsType = {
+  isAuth: boolean
+  login: string | null
+  profileImage: string | null
+}
+export type DispatchPropsType = {
+  logout: () => void
+}
+
+const Header: React.FC<MapPropsType & DispatchPropsType> = (props) => {
   return (
     <header className={n.header}>
       <div className={n.header1200}>
@@ -17,7 +28,7 @@ const Header = (props) => {
           {props.isAuth ? (
             <div className={n.loginBlock}>
               <img
-                src={props.profileImage}
+                src={props.profileImage || undefined}
                 alt="porfileImage"
                 className={n.profileImage}
               />

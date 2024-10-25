@@ -1,16 +1,22 @@
 import React from "react";
 import n from "./Navbar.module.scss";
 import { NavLink } from "react-router-dom";
+//@ts-ignore
 import SidebarContainer from "../Friends/SidebarContainer";
+//@ts-ignore
 import { ReactComponent as Border } from "../../assets/images/icons/border.svg";
 
-const Navbar = (props) => {
+type NavBarPropsType = {
+  
+}
+
+const Navbar: React.FC<NavBarPropsType> = (props) => {
   return (
     <nav className={n.nav}>
       <div className={n.buttonContainer}>
         <NavLink
           to="/Profile"
-          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : undefined)}
         >
           <button className={n.btn}>
             <Border className={n.svg} />
@@ -21,7 +27,7 @@ const Navbar = (props) => {
       <div className={n.buttonContainer}>
         <NavLink
           to="/Dialogs"
-          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : undefined)}
         >
           <button className={n.btn}>
             <Border className={n.svg} />
@@ -32,7 +38,7 @@ const Navbar = (props) => {
       <div className={n.buttonContainer}>
         <NavLink
           to="/News"
-          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : undefined)}
         >
           <button className={n.btn}>
             <Border className={n.svg} />
@@ -43,7 +49,7 @@ const Navbar = (props) => {
       <div className={n.buttonContainer}>
         <NavLink
           to="/Music"
-          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : undefined)}
         >
           <button className={n.btn}>
             <Border className={n.svg} />
@@ -54,7 +60,7 @@ const Navbar = (props) => {
       <div className={n.buttonContainer}>
         <NavLink
           to="/users"
-          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : undefined)}
         >
           <button className={n.btn}>
             <Border className={n.svg} />
@@ -65,7 +71,7 @@ const Navbar = (props) => {
       <div className={n.buttonContainer}>
         <NavLink
           to="/Settings"
-          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : undefined)}
         >
           <button className={n.btn}>
             <Border className={n.svg} />
@@ -76,7 +82,7 @@ const Navbar = (props) => {
       <div className={`${n.buttonContainer} ${n.itemFriends}`}>
         <NavLink
           to="/Friends"
-          className={({ isActive }) => (isActive ? n.activeLinkBtn : null)}
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : undefined)}
         >
           <button className={n.btn}>
             <Border className={n.svg} />

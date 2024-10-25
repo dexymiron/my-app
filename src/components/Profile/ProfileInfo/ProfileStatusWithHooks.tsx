@@ -5,6 +5,7 @@ import n from "./ProfileStatus.module.scss";
 type PropsType = {
   status: string;
   updateStatus: (newStatus: string) => void;
+  className?: string
 };
 
 

@@ -4,11 +4,11 @@
   "private": true,
   "homepage": "https://dexymiron.github.io/my-app/",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
+    "@types/react-test-renderer": "^16.9.2",
     "antd": "^5.21.4",
     "axios": "^1.7.3",
     "classnames": "^2.5.1",
@@ -59,7 +59,9 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-private-property-in-object": "^7.24.7",
+    "@testing-library/jest-dom": "^6.6.2",
     "@types/css-modules": "^1.0.5",
+    "@types/jest": "^29.5.14",
     "@types/redux-form": "^8.3.11",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.79.5",

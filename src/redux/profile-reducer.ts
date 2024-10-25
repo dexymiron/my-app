@@ -63,14 +63,14 @@ export const actions = {
 
 
 export const getProfilePage = (userId: number): ThunkType => {
-  return async (dispatch: any) => {
+  return async (dispatch) => {
     const data = await profileAPI.getProfile(userId)
     dispatch(actions.setUserProfile(data));
   }
 }
 
 export const getStatus = (userId: number): ThunkType => {
-  return async (dispatch: any) => {
+  return async (dispatch) => {
     let meData = await profileAPI.getStatus(userId)
 
     dispatch(actions.setStatus(meData));

@@ -3,14 +3,26 @@ import n from "./Dialogs.module.scss";
 import DialogItem from "./DialogItem/DialogsItem";
 import Message from "./Message/Message";
 import { Navigate } from "react-router-dom";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, InjectedFormProps } from "redux-form";
 import { Textarea } from "../common/FormsControls/FormsControls";
 import {
   maxLengthCreator,
   requiredField,
 } from "../../utils/validators/validators";
+import { initialStateType as MessagesPageType } from "../../redux/dialogs-reducer"; // Assuming messages-reducer manages messagesPage state
 
-const Dialogs = (props) => {
+
+type PropsType = {
+  messagesPage: MessagesPageType;
+  sendMessage: (messageText: string) => void;
+  isAuth: boolean;
+};
+
+type FormDataType = {
+  newMessageBody: string;
+};
+
+const Dialogs: React.FC<PropsType> = (props) => {
   let state = props.messagesPage;
 
   let dialogsElements =
@@ -22,11 +34,10 @@ const Dialogs = (props) => {
     state.messagesData &&
     state.messagesData.map((m) => <Message key={m.id} message={m.message} />);
 
-  let addNewMessage = (formData) => {
+  let addNewMessage = (formData: FormDataType) => {
     props.sendMessage(formData.newMessageBody);
   };
 
-  if (props.isAuth === false) return <Navigate to={"/login/"} />;
   return (
     <div className={n.dialogs}>
       <div className={n.dialogItems}>{dialogsElements}</div>
@@ -40,7 +51,7 @@ const Dialogs = (props) => {
 
 const maxLength50 = maxLengthCreator(50);
 
-const AddMesssageForm = (props) => {
+const AddMesssageForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div className={n.messageForm}>
@@ -53,13 +64,12 @@ const AddMesssageForm = (props) => {
           />
           <button>Отправить</button>
         </div>
-        <div></div>
       </div>
     </form>
   );
 };
 
-const AddMesssageFormRedux = reduxForm({ form: "dialogAddMessageForm" })(
+const AddMesssageFormRedux = reduxForm<FormDataType>({ form: "dialogAddMessageForm" })(
   AddMesssageForm
 );
 

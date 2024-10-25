@@ -1,13 +1,24 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import n from "./ProfileInfo.module.scss";
+//@ts-ignore
 import Preloader from "../../common/preloader/preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+//@ts-ignore
 import userPhoto from "../../../assets/images/user-no-photo-svg.svg";
 import { useState } from "react";
 import ProfileDataForm from "./ProfileDataForm";
-import { stopSubmit } from "redux-form";
+import { ContactsType, ProfileType } from "../../../redux/types/types";
 
-const ProfileInfo = ({
+export type ProfileInfoType = {
+  profile: ProfileType
+  status: string
+  updateStatus: (status: string) => void
+  isOwner: boolean
+  saveProfile: (profile: ProfileType) => Promise<any>
+  savePhoto: (file: File) => void
+}
+
+const ProfileInfo: React.FC<ProfileInfoType> = ({
   profile,
   status,
   updateStatus,
@@ -16,25 +27,28 @@ const ProfileInfo = ({
   savePhoto,
 }) => {
   let [editMode, setEditMode] = useState(false);
+  let [errorMessage, setErrorMessage] = useState(""); // Добавлено состояние для сообщения об ошибке
 
   if (!profile) {
     return <Preloader />;
   }
 
-  const onSubmit = (formData, dispatch) => {
+  const onSubmit = (formData:ProfileType) => {
+    //todo: remove then
     saveProfile(formData)
       .then(() => {
         setEditMode(false); // Возвращаемся в режим просмотра, если успех
+        setErrorMessage(""); // Сбрасываем сообщение об ошибке
       })
       .catch((error) => {
-        // Обработка ошибки и отображение через stopSubmit
-        const errorMessage = error || "An error occurred while saving profile";
-        dispatch(stopSubmit("edit-profile", { _error: errorMessage }));
+        console.error("Error save profile:", error);
+        setErrorMessage("Please filled text and try again");
       });
+      
   };
 
-  const onMainPhotoSelected = (e) => {
-    if (e.target.files.length) savePhoto(e.target.files[0]);
+  const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.length) savePhoto(e.target.files[0]);
   };
 
   const cancelEdit = () => {
@@ -108,7 +122,13 @@ const ProfileInfo = ({
   );
 };
 
-const ProfileData = ({ profile, isOwner, goToEditMode }) => {
+type ProfileDataPropsType = {
+  profile: ProfileType
+  isOwner: boolean
+  goToEditMode: () => void
+}
+
+const ProfileData: React.FC<ProfileDataPropsType> = ({ profile, isOwner, goToEditMode }) => {
   return (
     <div className={n.profileInfo}>
       <div className={n.editBtnWrapper}>
@@ -149,7 +169,7 @@ const ProfileData = ({ profile, isOwner, goToEditMode }) => {
               <Contact
                 key={key}
                 contactTitle={key}
-                contactValue={profile.contacts[key]}
+                contactValue={profile.contacts[key as keyof ContactsType]}
               />
             );
           })}
@@ -158,7 +178,13 @@ const ProfileData = ({ profile, isOwner, goToEditMode }) => {
     </div>
   );
 };
-const Contact = ({ contactTitle, contactValue }) => {
+
+type ContactsPropsType = {
+  contactTitle: string
+  contactValue: string | null
+}
+
+const Contact: React.FC<ContactsPropsType> = ({ contactTitle, contactValue }) => {
   return (
     <div className={n.contact}>
       <b>{contactTitle}</b>: {contactValue}

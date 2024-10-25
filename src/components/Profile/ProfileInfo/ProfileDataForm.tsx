@@ -4,11 +4,19 @@ import {
   Input,
   Textarea,
 } from "../../common/FormsControls/FormsControls";
-import { reduxForm } from "redux-form";
+import { InjectedFormProps, reduxForm } from "redux-form";
 import n from "./ProfileInfo.module.scss";
-import { maxLengthCreator } from "../../../utils/validators/validators";
+import { maxLengthCreator, requiredField } from "../../../utils/validators/validators";
+import { ProfileType } from "../../../redux/types/types";
 
-const ProfileDataForm = ({ handleSubmit, profile, error, cancelEdit }) => {
+type PropsType = {
+  profile: ProfileType
+  cancelEdit: () => void;
+}
+
+
+
+const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & PropsType> = ({ handleSubmit, profile, error, cancelEdit }) => {
   return (
     <form onSubmit={handleSubmit} className={n.MainEditedForm}>
       <div className={n.buttons}>
@@ -38,16 +46,16 @@ const ProfileDataForm = ({ handleSubmit, profile, error, cancelEdit }) => {
           {createField(
             "My professional skills",
             "lookingForAJobDescription",
-            [maxLengthCreator(200)],
+            [requiredField, maxLengthCreator(200)],
             Textarea
           )}
-        </div>
+        </div>  
         <div className={n.AboutMeBlock}>
           <b className={n.AboutMeTitle}>About me</b>:
           {createField(
             "About me",
             "aboutMe",
-            [maxLengthCreator(200)],
+            [requiredField, maxLengthCreator(200)],
             Textarea
           )}
         </div>
@@ -76,7 +84,7 @@ const ProfileDataForm = ({ handleSubmit, profile, error, cancelEdit }) => {
     </form>
   );
 };
-const ProfileDataFormReduxForm = reduxForm({ form: "edit-profile" })(
+const ProfileDataFormReduxForm = reduxForm<ProfileType, PropsType>({ form: "edit-profile" })(
   ProfileDataForm
 );
 

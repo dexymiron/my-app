@@ -1,12 +1,17 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+//@ts-ignore
 import { validationSchema } from "../../common/FormsControls/FormikControls";
 import n from "./AddNewPostForm.module.scss";
 
 import { ToastContainer, toast, Flip } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AddNewPostForm = (props) => {
+type PropsType = {
+  addPost: (postText: string) => void;
+}
+
+const AddNewPostForm: React.FC<PropsType> = (props) => {
   /* Toastify */
   const notify = () =>
     toast.success("Post Added!", {
@@ -27,7 +32,7 @@ const AddNewPostForm = (props) => {
         initialValues={{ newPostText: "" }}
         validationSchema={validationSchema}
         onSubmit={(values, { resetForm }) => {
-          props.addPost(values.newPostText); // передаем текст поста
+          props.addPost(values.newPostText);
           resetForm();
         }}
       >

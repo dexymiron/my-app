@@ -1,9 +1,18 @@
 import React from "react";
 import n from "./Users.module.scss";
+//@ts-ignore
 import userPhoto from "../../assets/images/User.webp";
 import { NavLink } from "react-router-dom";
+import { UserType } from "../../redux/types/types";
 
-let User = ({ user, followingInProgress, unfollow, follow }) => {
+type PropsType = {
+  user: UserType
+  followingInProgress: number[]
+  follow: (userId:number) => void
+  unfollow: (userId:number) => void
+}
+
+let User: React.FC<PropsType> = ({ user, followingInProgress, unfollow, follow }) => {
   return (
     <div>
       <span>
@@ -44,10 +53,10 @@ let User = ({ user, followingInProgress, unfollow, follow }) => {
           <div>{user.status}</div>
           <div>{user.id}</div>
         </span>
-        <span>
+        {/* <span>
           <div>{user.location?.country}</div>
           <div>{user.location?.city}</div>
-        </span>
+        </span> */}
       </span>
     </div>
   );
