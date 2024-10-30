@@ -64,8 +64,10 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & Prop
         <b className={n.ContactsTitle}>Contacts</b>{" "}
         {Object.keys(profile.contacts).map((key) => {
           if (key === "vk") {
-            return null;
-          } /* Исключили VK */
+            return null; /* Исключили VK */
+          } else if (key === "mainLink") {
+            return null; /* Исключили mainLink */
+          }
           return (
             <div key={key} className={n.contactBlock}>
               <b className={n.contactTitle}>

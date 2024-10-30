@@ -4,12 +4,17 @@ import Paginator from "../common/Paginator/Paginator";
 // @ts-ignore
 import User from "./User";
 import { UserType } from "../../redux/types/types";
+import UsersSearchForm from "./UsersSearchForm";
+import { FilterType } from "../../redux/users-reducer";
+
+
 
 type UsersType = {
   totalUsersCount: number
   pageSize: number
   currentPage: number
   onPageChanged: (pageNumber:number) => void
+  onFilterChanged: (filter: FilterType) => void
   users: Array<UserType>
   followingInProgress: Array<number>
   toggleFolowingProgress: (isFetching: boolean, userId:number) => void
@@ -28,6 +33,7 @@ let Users: React.FC<UsersType> = ({
 }) => {
   return (
     <div className={n.UsersPage}>
+      <UsersSearchForm onFilterChanged= {props.onFilterChanged}/>
       <Paginator
         currentPage={currentPage}
         onPageChanged={onPageChanged}
@@ -46,5 +52,7 @@ let Users: React.FC<UsersType> = ({
     </div>
   );
 };
+
+
 
 export default Users;

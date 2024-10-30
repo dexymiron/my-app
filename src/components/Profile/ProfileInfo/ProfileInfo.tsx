@@ -143,18 +143,17 @@ const ProfileData: React.FC<ProfileDataPropsType> = ({ profile, isOwner, goToEdi
       <div className={n.profileInfoForm}>
         <div className={n.leftColForm}>
           <div className={n.leftColFormNameContainer}>
-            <b className={n.leftColFormName}>Full name</b>: {profile.fullName}
+            <b className={n.leftColFormName}>Full name:</b> {profile.fullName}
           </div>
           <div>
-            <b>Looking for a job</b>: {profile.lookingForAJob ? "yes" : "no"}
-          </div>
-          {profile.lookingForAJob && (
-            <div>
-              <b>My professional skills</b>: {profile.lookingForAJobDescription}
+            <b>Looking for a job:</b> {profile.lookingForAJob ? "yes" : "no"}
+          </div>{profile.lookingForAJob && (
+            <div className={n.myProffessionalSkillsContainer}>
+              <h4 className={n.myProffessionalSkills}><br/>My professional skills:</h4> {profile.lookingForAJobDescription}
             </div>
           )}
-          <div>
-            <b>About me</b>: {profile.aboutMe}
+          <div className={n.aboutMeContainer}>
+            <h4 className={n.aboutMe}>About me:</h4> {profile.aboutMe}
           </div>
         </div>
         <div className={n.ContactsFormContainer}>
@@ -163,8 +162,10 @@ const ProfileData: React.FC<ProfileDataPropsType> = ({ profile, isOwner, goToEdi
           </div>{" "}
           {Object.keys(profile.contacts).map((key) => {
             if (key === "vk") {
-              return null;
-            } /* Исключили VK */
+              return null; /* Исключили VK */
+            } else if (key === "mainLink") {
+              return null; /* Исключили mainLink */
+            }
             return (
               <Contact
                 key={key}
@@ -187,7 +188,7 @@ type ContactsPropsType = {
 const Contact: React.FC<ContactsPropsType> = ({ contactTitle, contactValue }) => {
   return (
     <div className={n.contact}>
-      <b>{contactTitle}</b>: {contactValue}
+      <b>{contactTitle}:</b> {contactValue}
     </div>
   );
 };

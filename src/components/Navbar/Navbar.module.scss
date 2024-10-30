@@ -1,6 +1,6 @@
 .nav {
   grid-area: n;
-  background: #56453E;
+  background: #7171712b; //#eff2f6; brown: 56453E //antd: 002140 //app: 7171712b
   padding: 20px;
   font-size: 21px;
   display: flex;
@@ -53,7 +53,7 @@ a.activeLinkBtn {
   left: 0;
   top: 0;
   fill: none;
-  stroke: #fff;
+  stroke: #002140;
   stroke-opacity: 0.8;
   stroke-dasharray: 150 480;
   stroke-dashoffset: 150;
@@ -71,7 +71,7 @@ a.activeLinkBtn {
 }
 
 .btn .btnText {
-  color: white;
+  color: #000;
   font-size: 18px;
   font-weight: 100;
 }

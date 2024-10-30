@@ -7,7 +7,7 @@
 .main-wrapper {
   display: flex;
   flex-direction: column;
-  background-color: #E4E0E1;
+  background-color: #fff; //eff2f6
 }
 
 .App-wrapper {
@@ -32,7 +32,7 @@
   margin-top: 5px;
   min-height: 75vh;
   grid-area: c;
-  background-color: #E0D7C7;
+  background-color:   #7171712b;
   position: relative; /* для кнопки Edit Button */ 
   border-right: 3px solid rgba(0, 0, 0, 0.2);
 

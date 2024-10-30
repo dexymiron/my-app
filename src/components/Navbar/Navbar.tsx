@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import SidebarContainer from "../Friends/SidebarContainer";
 //@ts-ignore
 import { ReactComponent as Border } from "../../assets/images/icons/border.svg";
+import DropDownMenu from "../common/Menu/Menu";
 
 type NavBarPropsType = {
   

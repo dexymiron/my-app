@@ -23,8 +23,9 @@ const MyMap = () => {
       style={{
         height: "auto",
         width: "100%",
-        marginTop: "5px",
-        border: "2px solid rgba(0, 0, 0, 0.5",
+        marginTop: "4px",
+        border: "4px solid rgba(0, 0, 0, 0.1",
+        borderTop: "none",
       }}
     >
       <TileLayer
