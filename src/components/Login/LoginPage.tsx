@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/auth-reducer";
 import { Navigate } from "react-router-dom";
 import n from "./LoginPage.module.scss";
 import type { FormProps } from 'antd';
-import { AppStateType } from "../../redux/redux-store";
+import { AppDispatch, AppStateType } from "../../redux/redux-store";
 
 type FieldType = {
   email: string;
@@ -14,31 +14,29 @@ type FieldType = {
   captcha?: null
 };
 
-type MapStateToPropsType = {
-  captchaUrl: string | null
-  isAuth: boolean
-  error?: string | null;
-}
 
-type MapDispatchToPropsType = {
-  login: (email: string, password: string, rememberMe: boolean, captcha: null) => Promise<void>;
-  
-}
+const LoginPage: React.FC = () => {
 
+  const captchaUrl = useSelector((state: AppStateType) => state.auth.captchaUrl)
+  const isAuth = useSelector((state: AppStateType) => state.auth.isAuth)
 
-const LoginPage: React.FC<MapStateToPropsType & MapDispatchToPropsType> = ({ error, captchaUrl, isAuth, login }) => {
+  const dispatch: AppDispatch = useDispatch();
+
   const [loading, setLoading] = useState(false);
 
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     setLoading(true);
-    await login(
+    await dispatch(login(
       values.email,
       values.password,
       values.rememberMe,
-      values.captcha ?? null
-    );
+      values.captcha ?? null,
+    ));
     setLoading(false);
   };
+  
+
+
 
   if (isAuth) {
     return <Navigate to={"/profile"} />;
@@ -62,7 +60,7 @@ const LoginPage: React.FC<MapStateToPropsType & MapDispatchToPropsType> = ({ err
           rules={[
             { required: true, message: "Please input your email!" },
             { max: 50, message: "Max length 50 symbols..." },
-            { type: "email", message: "The input is not valid E-mail!" },
+            //{ type: "email", message: "The input is not valid E-mail!" },
           ]}
         >
           <Input className={n.emailInput} />
@@ -104,7 +102,7 @@ const LoginPage: React.FC<MapStateToPropsType & MapDispatchToPropsType> = ({ err
           </>
         )}
 
-        {error && <div className={n.formSummaryError}>{error}</div>}
+        {/* {error && <div className={n.formSummaryError}>{error}</div>} */}
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button
@@ -121,9 +119,5 @@ const LoginPage: React.FC<MapStateToPropsType & MapDispatchToPropsType> = ({ err
   );
 };
 
-const mapStateToProps = (state: AppStateType):MapStateToPropsType => ({
-  captchaUrl: state.auth.captchaUrl,
-  isAuth: state.auth.isAuth,
-});
+export default LoginPage;
 
-export default connect(mapStateToProps, { login })(LoginPage);

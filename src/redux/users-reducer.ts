@@ -121,13 +121,13 @@ const followUnfollowFlow = async (dispatch: DispatchType, userId: number, apiMet
 
 export const follow = (userId: number): ThunkType => {
 
-  return async (dispatch: DispatchType) => {
+  return async (dispatch) => {
     followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), actions.followSucces);
   }
 }
 
 export const unfollow = (userId: number): ThunkType => {
-  return async (dispatch: DispatchType) => {
+  return async (dispatch) => {
     followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), actions.unfollowSucces);
   };
 }
@@ -136,6 +136,6 @@ export default usersReducer;
 
 export type initialStateType = typeof initialState;
 
-type DispatchType = Dispatch<ActionTypes>;
-type ThunkType = BaseThunkType<ActionTypes>;
+export type DispatchType = Dispatch<ActionTypes>;
+export type ThunkType = BaseThunkType<ActionTypes>;
 export type FilterType = typeof initialState.filter;

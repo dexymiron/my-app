@@ -8,7 +8,7 @@ import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
 import SidebarContainer from './components/Friends/SidebarContainer';
 import NavbarContainer from './components/Navbar/NavbarConteiner';
-import UsersContainer from './components/Users/UsersContainer';
+import {UsersPage} from './components/Users/UsersContainer';
 import LoginPage from './components/Login/LoginPage';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -72,7 +72,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                 <Route path='/music' element={<Music />} />
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/friends' element={<SidebarContainer />} />
-                <Route path='/users' element={<UsersContainer />} />
+                <Route path='/users' element={<UsersPage />} />
                 <Route path='/login' element={<LoginPage />} />
                 <Route path='*' element={<div>404 NOT FOUND</div>} />
               </Routes>
