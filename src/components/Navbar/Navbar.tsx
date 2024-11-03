@@ -80,6 +80,17 @@ const Navbar: React.FC<NavBarPropsType> = (props) => {
           </button>
         </NavLink>
       </div>
+      <div className={n.buttonContainer}>
+        <NavLink
+          to="/chatpage"
+          className={({ isActive }) => (isActive ? n.activeLinkBtn : undefined)}
+        >
+          <button className={n.btn}>
+            <Border className={n.svg} />
+            <span className={n.btnText}>Chat</span>
+          </button>
+        </NavLink>
+      </div>
       <div className={`${n.buttonContainer} ${n.itemFriends}`}>
         <NavLink
           to="/Friends"

@@ -21,12 +21,12 @@ import "leaflet/dist/leaflet.css";
 import { AppStateType } from './redux/redux-store';
 
 
-
 //import DialogsContainer from './components/Dialogs/DialogsContainer';
 //import ProfileContainer from './components/Profile/ProfileContainer';
 const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'));
 //@ts-ignore
 const ProfileContainer = lazy(() => import('./components/Profile/ProfileContainer'));
+const ChatPage = lazy(() => import('./pages/Chat/ChatPage'));
 
 
 type MapPropsType = ReturnType<typeof mapStateToProps>;
@@ -74,6 +74,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                 <Route path='/friends' element={<SidebarContainer />} />
                 <Route path='/users' element={<UsersPage />} />
                 <Route path='/login' element={<LoginPage />} />
+                <Route path='/chatpage' element={<ChatPage />} />
                 <Route path='*' element={<div>404 NOT FOUND</div>} />
               </Routes>
             </Suspense>
