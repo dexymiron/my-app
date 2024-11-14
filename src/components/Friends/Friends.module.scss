@@ -1,14 +1,6 @@
-.friend {
-    padding-right: 5px;
-    
-}
-
 .friends {
-    display: flex;
-    flex-direction: column;
     color: #FFFAE5;
     padding-top: 10px;
-    align-items: center;
 }
 
 .imgRotate {
@@ -16,6 +8,24 @@
     width: 30px;
 }
 
+
+.friendsBlock {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    margin-top: 20px;
+    color: black;
+    gap: 25px;
+}
+
+
+
+
+.noFriendsMessage {
+    color: black;
+    text-align: center;
+    font-style: italic;
+}
 
 
 

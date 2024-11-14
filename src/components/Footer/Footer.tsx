@@ -23,10 +23,10 @@ const Footer: React.FC = () => {
             <h1 className={n.logoText}>Social</h1>
           </div>
           <div className={n.Icons}>
-            <IconFb width="25px" height="25px" className={n.icon} />
-            <IconGooglePlus width="25px" height="25px" className={n.icon} />
-            <IconLd width="25px" height="25px" className={n.icon} />
-            <IconTw width="25px" height="25px" className={n.icon} />
+            <a href="https://www.facebook.com/profile.php?id=100012155105938" target="_blank" rel="noopener noreferrer" style={{color: 'inherit', textDecoration: 'none'}}><IconFb width="25px" height="25px" className={n.icon}></IconFb></a>
+            <a href="" target="_blank" rel="noopener noreferrer" style={{color: 'inherit', textDecoration: 'none'}}><IconGooglePlus width="25px" height="25px" className={n.icon} /></a>
+            <a href="https://www.linkedin.com/in/dmytro-myronov-4a99a5327/" target="_blank" rel="noopener noreferrer" style={{color: 'inherit', textDecoration: 'none'}}><IconLd width="25px" height="25px" className={n.icon} /></a>
+            <a href="" target="_blank" rel="noopener noreferrer" style={{color: 'inherit', textDecoration: 'none'}}><IconTw width="25px" height="25px" className={n.icon} /></a>
           </div>
         </div>
         <div className={n.map}>
@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
                 fill="red"
               ></path>
             </svg>
-            <h4 className={n.mailH4}>dexymiron@gmail.com</h4>
+            <a className={n.mailH4} href="mailto:dexymiron@gmail.com">dexymiron@gmail.com</a>
           </div>
           <div className={n.coordinates}>
             <svg
@@ -78,7 +78,7 @@ const Footer: React.FC = () => {
                 fill="red"
               ></path>
             </svg>
-            <h4 className={n.coordinatesH4}>228 Park Ave S NY, USA</h4>
+            <a className={n.coordinatesH4} target="_blanc" href="https://www.google.com/maps/place/228+Park+Ave+S,+New+York,+NY+10003,+%D0%A1%D0%A8%D0%90/@40.7377307,-73.9909936,17z/data=!3m1!4b1!4m6!3m5!1s0x89c259a189d93c29:0x300099f29cad7a9!8m2!3d40.7377307!4d-73.9884187!16s%2Fg%2F11c5c734l8?entry=ttu&g_ep=EgoyMDI0MTExMC4wIKXMDSoASAFQAw%3D%3D">228 Park Ave S NY, USA</a>
           </div>
         </div>
       </div>

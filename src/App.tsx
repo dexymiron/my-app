@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 
 import HeaderContainer from './components/Header/HeaderContainer';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
@@ -15,6 +15,8 @@ import { compose } from 'redux';
 import { initializeApp } from './redux/app-reducer';
 //@ts-ignore
 import Preloader from './components/common/preloader/preloader';
+//@ts-ignore
+import notFoundPage from './assets/images/404.png';
 import { lazy, Suspense } from 'react';
 import Footer from './components/Footer/Footer';
 import "leaflet/dist/leaflet.css";
@@ -55,7 +57,10 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
       </div>
     )}
 
+    const isAuth = this.props.isAuth;
+
   return (
+    
     <HashRouter>
       <div className={`main-wrapper ${this.props.initialized ? 'initialized' : ''}`}>
         <HeaderContainer />
@@ -72,10 +77,10 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                 <Route path='/music' element={<Music />} />
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/friends' element={<SidebarContainer />} />
-                <Route path='/users' element={<UsersPage />} />
+                <Route path='/users' element={isAuth ? <UsersPage /> : <Navigate to="/login" replace />} />
                 <Route path='/login' element={<LoginPage />} />
-                <Route path='/chatpage' element={<ChatPage />} />
-                <Route path='*' element={<div>404 NOT FOUND</div>} />
+                <Route path='/chatpage' element={isAuth ? <ChatPage /> : <Navigate to="/login" replace />} />
+                <Route path='*' element={<div ><img src={notFoundPage} alt='error' className='notFound'></img></div>} />
               </Routes>
             </Suspense>
           </div>
@@ -88,7 +93,8 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
 }
 
 const mapStateToProps = (state: AppStateType) => ({
-  initialized: state.app.initialized
+  initialized: state.app.initialized,
+  isAuth: state.auth.isAuth
 })
 
 export default compose(

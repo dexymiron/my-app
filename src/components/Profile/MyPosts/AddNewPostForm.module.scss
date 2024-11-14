@@ -1,3 +1,6 @@
+@import '../../../scss/base/breakpoints';
+
+
 .errorText {
     color: rgb(108, 0, 0);
     font-style: italic;
@@ -8,23 +11,38 @@
     margin-left: 10px;
 }
 
+
 .addPostBtn {
-    background-color: rgb(1, 111, 1); //56453E
+    width: 115px;
+    height: 30px;
+    background: linear-gradient(135deg, rgba(1, 111, 1, 0.8), rgba(0, 172, 55, 0.8),);
+    //background-color: rgb(1, 111, 1); //56453E
     color: white;
     padding: 5px 10px;
     font-size: 16px;
     border: none;
-    border-radius: 7px; 
+    border-radius: 20px; 
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.addPostBtn:hover {
+    background: linear-gradient(135deg, rgba(0, 172, 55, 0.8), rgba(1, 111, 1, 0.8));
+    //background-color: rgba(1, 111, 1, 0.832);
+    border: 1px solid rgba(0, 0, 0, 0.203);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
 }
 
 .postsText {
-    
+    display: flex;
+    gap: 30px;
+    align-items: center;
     width: 100%;
-    max-width: 225px;
-    padding: 10px 20px;
+    //  max-width: 225px;
+    padding: 10px 40px;
     
     /* Шрифт */
     font-size: 16px;
@@ -32,12 +50,12 @@
     color: #333;
     
     /* Рамка и скругление углов */
-    border: 2px solid #7e7b7b;
-    border-radius: 30px;
+    //border: 2px solid #7e7b7b;
+    border-radius: 7px;
     
     /* Тени и фон */
-    background-color: #EAE7E2;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f4f4f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     
     /* Переходы для плавных эффектов */
     transition: all 0.3s ease;
@@ -60,3 +78,43 @@
     color: #aaa;
     font-style: italic;
 }
+
+.formInput {
+    height: 32px;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.091) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: none;
+    padding-inline: 10px;
+    box-sizing: border-box;
+    line-height: 32px;
+    font-size: 16px;
+}
+
+.formInput::placeholder {
+}
+
+.formInput:focus {
+    background-color: rgba(0, 0, 0, 0.203);
+}
+
+//=============================================<1200
+@media (max-width: $breakpoint-desktop) {
+    // Стили для больших экранов и десктопов
+  }
+  //=============================================<992
+  @media (max-width: $breakpoint-tablet) {
+    .postsText {
+        flex-direction: column;
+    }
+  }
+  
+  
+  //=============================================<768
+  @media (max-width: $breakpoint-small-tablet) {
+    
+  }
+  //=============================================<576
+  @media (max-width: $breakpoint-mobile) {
+   
+  }

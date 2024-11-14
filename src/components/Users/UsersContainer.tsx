@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import {Users} from "./Users";
 // @ts-ignore
@@ -10,13 +10,16 @@ import {
 } from "../../redux/users-selectors";
 
 
+
 type UsersPagePropsType = {
   pageTitle?: string
 }
 
 export const UsersPage:React.FC<UsersPagePropsType> = (props) => {
+  
 
-  const isFetching = useSelector(getIsFetching)
+  const isFetching = useSelector(getIsFetching);
+  
 
   return (
     <>

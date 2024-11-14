@@ -1,8 +1,11 @@
 @import '../../scss/base/animations';
+@import '../../scss/base/breakpoints';
 
 .header {
   grid-area: h;
   background-color: #002140; //002140; //old: 211C1D
+  background: linear-gradient(135deg, #002140 0%, #005072 100%);
+  width: 100%;
 }
 
 .header::after {
@@ -34,15 +37,17 @@
 .logoBlock {
   display: flex;
   align-items: center;
+  padding-right: 80px;
 }
 
 .logoImg {
   max-width: 200px;
-  height: 60px;
+  height: 80px;
 }
 
 .logoText {
   color: rgb(199, 199, 199);
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -52,12 +57,49 @@
 }
 
 .profileImage {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   margin-right: 10px;
   border-radius: 7px;
   border: 3px solid rgba(255, 255, 255, 0.6);
 }
+
+.userName {
+  font-weight: 600;
+  color: rgb(212, 212, 212);
+}
+
+.loginBtn {
+  height: 45px;
+  width: 150px;
+    
+  background: linear-gradient(135deg, #005072, #0065d8);
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 1px solid rgba(2, 28, 141, 0.1);
+  border-radius: 20px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  text-align: center;
+}
+
+.loginBtn:hover {
+  //background-color: #02a320;
+  background: linear-gradient(135deg, #0065d8, #005072);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.loginText {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+
 
 
 /* ==============================================BUTTON STYLE */
@@ -76,6 +118,9 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
 
   position: relative;
@@ -120,4 +165,31 @@
 
 .logOutBtn:hover .logOutText   {
   left: 150px;
+}
+
+//=============================================<1200
+@media (max-width: $breakpoint-desktop) {
+  // Стили для больших экранов и десктопов
+}
+//=============================================<992
+@media (max-width: $breakpoint-tablet) {
+  // Стили для планшетов
+}
+
+
+//=============================================<768
+@media (max-width: $breakpoint-small-tablet) {
+  .header {
+    position: fixed;
+    z-index: 1;
+    .userName {
+      display: none;
+    }
+  }
+}
+//=============================================<576
+@media (max-width: $breakpoint-mobile) {
+ .profileImage {
+  display: none;
+ }
 }

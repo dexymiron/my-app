@@ -8,8 +8,8 @@ let initialState = {
   posts: [
     { id: 1, message: 'Hi how are you?', likesCount: 15 },
     { id: 2, message: 'Here my new post', likesCount: 25 },
-    { id: 3, message: 'Add something happened with you for last days', likesCount: 35 },
-    { id: 4, message: 'Write how you spend time', likesCount: 45 },
+    //{ id: 3, message: 'Add something happened with you for last days', likesCount: 35 },
+    //{ id: 4, message: 'Write how you spend time', likesCount: 45 },
   ] as Array<PostType>,
   profile: null as ProfileType | null,
   status: "",
@@ -22,12 +22,20 @@ const profileReducer = (state = initialState, action: ActionsType): initialState
       let newPost = {
         id: state.posts.length + 1,
         message: action.newPostText,
-        likesCount: Math.floor(Math.random() * 50)
+
+        likesCount: 0,
+        //Math.floor(Math.random() * 50)
       };
       return {
         ...state,
         posts: [...state.posts, newPost],
         newPostText: ""
+      };
+
+    case 'SN/PROFILE/REMOVE_POST':
+      return {
+        ...state,
+        posts: state.posts.filter(post => post.id !== action.postId),
       };
 
     case 'SN/PROFILE/SET_USER_PROFILE':
@@ -58,6 +66,7 @@ export const actions = {
   setUserProfile: (profile: ProfileType) => ({ type: 'SN/PROFILE/SET_USER_PROFILE', profile } as const),
   setStatus: (status: string) => ({ type: 'SN/PROFILE/SET_STATUS', status } as const),
   addPostActionCreator: (newPostText: string) => ({ type: 'SN/PROFILE/ADD-POST', newPostText } as const),
+  removePostActionCreator: (postId: number) => ({ type: 'SN/PROFILE/REMOVE_POST', postId } as const),
   savePhotoSuccess: (photos: PhotosType) => ({ type: 'SN/PROFILE/SAVE_PHOTO_SUCCESS', photos } as const)
 }
 

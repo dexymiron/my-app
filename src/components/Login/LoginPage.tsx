@@ -43,78 +43,79 @@ const LoginPage: React.FC = () => {
   }
 
   return (
-    <div>
-      <h1>Login Page</h1>
-      <Form
-        name="login_form"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 8 }}
-        initialValues={{ rememberMe: true }}
-        onFinish={onFinish}
-        className={n.form}
-      >
-        <Form.Item<FieldType>
-          label="Email"
-          name="email"
-          hasFeedback
-          rules={[
-            { required: true, message: "Please input your email!" },
-            { max: 50, message: "Max length 50 symbols..." },
-            //{ type: "email", message: "The input is not valid E-mail!" },
-          ]}
+    <div className={n.LoginPage}>
+      <h1 className={n.loginPageText}>Login Page</h1>
+      <div className={n.formContainer}>
+        <Form
+          name="login_form"
+          layout="vertical"
+          initialValues={{ rememberMe: true }}
+          onFinish={onFinish}
+          className={n.form}
         >
-          <Input className={n.emailInput} />
-        </Form.Item>
-
-        <Form.Item<FieldType>
-          label="Password"
-          name="password"
-          hasFeedback
-          rules={[
-            { required: true, message: "Please input your password!" },
-            { min: 6, message: "Min length 6 symbols" },
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-
-        <Form.Item
-          name="rememberMe"
-          valuePropName="checked"
-          wrapperCol={{ offset: 8, span: 16 }}
-        >
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        {captchaUrl && (
-          <>
-            <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <img src={captchaUrl} alt="captcha" />
-            </Form.Item>
-
-            <Form.Item<FieldType>
-              label="Captcha"
-              name="captcha"
-              rules={[{ required: true, message: "Please input captcha!" }]}
-            >
-              <Input />
-            </Form.Item>
-          </>
-        )}
-
-        {/* {error && <div className={n.formSummaryError}>{error}</div>} */}
-
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button
-            type="primary"
-            htmlType="submit"
-            loading={loading}
-            className={n.loginBtn}
+          <Form.Item<FieldType>
+            label="Email"
+            name="email"
+            hasFeedback
+            rules={[
+              { required: true, message: "Please input your email!" },
+              { max: 50, message: "Max length 50 symbols..." },
+              //{ type: "email", message: "The input is not valid E-mail!" },
+            ]}
           >
-            Login
-          </Button>
-        </Form.Item>
-      </Form>
+            <Input className={n.emailInput} />
+          </Form.Item>
+
+          <Form.Item<FieldType>
+            label="Password"
+            name="password"
+            hasFeedback
+            rules={[
+              { required: true, message: "Please input your password!" },
+              { min: 4, message: "Min length 4 symbols" },
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
+
+          <Form.Item
+            name="rememberMe"
+            valuePropName="checked"
+            wrapperCol={{ offset: 8, span: 16 }}
+          >
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
+
+          {captchaUrl && (
+            <>
+              <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                <img src={captchaUrl} alt="captcha" />
+              </Form.Item>
+
+              <Form.Item<FieldType>
+                label="Captcha"
+                name="captcha"
+                rules={[{ required: true, message: "Please input captcha!" }]}
+              >
+                <Input />
+              </Form.Item>
+            </>
+          )}
+
+          {/* {error && <div className={n.formSummaryError}>{error}</div>} */}
+
+          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              loading={loading}
+              className={n.loginBtn}
+            >
+              Log In
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 };

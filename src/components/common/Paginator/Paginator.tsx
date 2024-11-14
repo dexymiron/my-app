@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import styles from "./Paginator.module.scss";
 import cn from "classnames";
+//@ts-ignore
+import rightArrow from '../../../assets/images/icons/right.svg';
+//@ts-ignore
+import leftArrow from '../../../assets/images/icons/left.svg';
+
+
 
 type PropsType = {
   totalItemsCount: number
@@ -31,12 +37,12 @@ let Paginator: React.FC<PropsType> = ({
   return (
     <div className={styles.paginator}>
       {portionNumber > 1 && (
-        <button
+        <button className={styles.nextButton}
           onClick={() => {
             setPortionNumber(portionNumber - 1);
           }}
         >
-          PREV
+        <img src={leftArrow} alt="next" style={{width: '11px', height: '11px'}}/>
         </button>
       )}
       {pages
@@ -62,12 +68,12 @@ let Paginator: React.FC<PropsType> = ({
           );
         })}
       {portionCount > portionNumber && (
-        <button
+        <button className={styles.nextButton}
           onClick={() => {
             setPortionNumber(portionNumber + 1);
           }}
         >
-          NEXT
+          <img src={rightArrow} alt="next" style={{width: '11px', height: '11px'}}/>
         </button>
       )}
     </div>

@@ -35,7 +35,7 @@ const ProfileStatusWithHooks: React.FC<PropsType> = (props) => {
       {!editMode && (
         <div>
           <b className={n.statusStatus}>Status: </b>
-          <span onDoubleClick={activateEditMode}>
+          <span onDoubleClick={activateEditMode} className={n.statusValue}>
             {props.status || "Enter your status here"}
           </span>
         </div>

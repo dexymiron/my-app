@@ -21,6 +21,7 @@ const Profile: React.FC<PropsType> = (props) => {
   if (!props.profile) {
     return null;
   }
+
   return (
     <div className={n.Profile}>
       <ProfileInfo

@@ -1,5 +1,8 @@
+@import './scss/base/breakpoints';
+
 * {
-  font-family: Helvetica Neue;
+  //font-family: Helvetica Neue;
+  font-family: 'Inter', sans-serif;
   box-sizing: border-box;
 }
 
@@ -30,12 +33,12 @@
 
 .app-wrapper-content {
   margin-top: 5px;
-  min-height: 75vh;
+  padding-inline: 10px;
+  min-height: 78vh;
   grid-area: c;
-  background-color:   #7171712b;
+  background-color:#7171710b;
   position: relative; /* для кнопки Edit Button */ 
-  border-right: 3px solid rgba(0, 0, 0, 0.2);
-
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* PRELOADER INITIALIZATION*/
@@ -58,4 +61,40 @@
 
 .initialized .Footer {
   display: flex;
+}
+
+
+@media (max-width: $breakpoint-desktop) {
+  // Стили для больших экранов и десктопов
+}
+
+@media (max-width: $breakpoint-tablet) {
+  // Стили для планшетов
+}
+
+@media (max-width: $breakpoint-small-tablet) {
+  .App-wrapper {
+    grid-template-areas: 
+    "h h"
+    "n n"
+    "c c"
+    "f f"
+    ;
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .App-wrapper {
+    grid-template-areas: 
+    "h h"
+    "n n"
+    "c c"
+    "f f"
+    ;
+  }
+}
+
+.notFound {
+  max-width: 950px;  
 }

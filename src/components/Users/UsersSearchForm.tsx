@@ -2,6 +2,10 @@ import React from "react";
 import { Field, Formik } from 'formik';
 import { Form } from "formik";
 import { FilterType } from "../../redux/users-reducer";
+import n from './UsersSearchForm.module.scss';
+//@ts-ignore
+import users from '../../assets/images/icons/users.svg';
+
 
 const usersSearchFormValidate = (values: any) => {
     const errors = {}
@@ -37,17 +41,22 @@ const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
             {({
             isSubmitting,   
             }) => (
-            <Form>
-                
-                <Field type='text' name='term'/>
-                <Field name="friend" as="select">
+            <Form>  
+                    <div className={n.searchInputWrapper}>
+                    <Field type='text' name='term' className={n.searchInput} placeholder="Filter by nickname..."/>
+                    </div>
+                <Field name="friend" as="select" className={n.selectList}>
                     <option value="null">All</option>
                     <option value="true">Only Followed</option>
                     <option value="false">Only Unfollowed</option>
                 </Field>
-                <button type="submit" disabled={isSubmitting}>
+                <button type="submit" disabled={isSubmitting} className={n.searchButton}>
                 Find
                 </button>
+                <div className={n.usersLogoContainer}>
+                    <h1 style={{margin: '0', display: 'inline-block', textTransform: 'uppercase', letterSpacing: '1px', textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)', color: 'rgba(0, 0, 0, 0.7)'}}>Users</h1>
+                    <img src={users} alt="UsersLogo" style={{marginLeft: '10px', opacity: '0.7'}}/>
+                </div>
             </Form>
             )}
         </Formik>

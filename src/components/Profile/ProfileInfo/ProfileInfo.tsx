@@ -4,7 +4,7 @@ import n from "./ProfileInfo.module.scss";
 import Preloader from "../../common/preloader/preloader";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 //@ts-ignore
-import userPhoto from "../../../assets/images/user-no-photo-svg.svg";
+import userPhoto from "../../../assets/images/icons/noPhoto.svg";
 import { useState } from "react";
 import ProfileDataForm from "./ProfileDataForm";
 import { ContactsType, ProfileType } from "../../../redux/types/types";
@@ -129,6 +129,14 @@ type ProfileDataPropsType = {
 }
 
 const ProfileData: React.FC<ProfileDataPropsType> = ({ profile, isOwner, goToEditMode }) => {
+
+  const [infoVisibility, setInfoVisibility] = useState(false);
+
+  const toggleInfoVisibility = () => {
+    setInfoVisibility(!infoVisibility);
+  }
+
+
   return (
     <div className={n.profileInfo}>
       <div className={n.editBtnWrapper}>
@@ -144,21 +152,26 @@ const ProfileData: React.FC<ProfileDataPropsType> = ({ profile, isOwner, goToEdi
         <div className={n.leftColForm}>
           <div className={n.leftColFormNameContainer}>
             <b className={n.leftColFormName}>Full name:</b> {profile.fullName}
+            {/* <hr style={{marginTop: '10px'}}></hr> */}
           </div>
           <div>
-            <b>Looking for a job:</b> {profile.lookingForAJob ? "yes" : "no"}
+            <b>Looking for a job:</b> <span style={{color: 'rgba(0, 0, 0, 0.8'}}>{profile.lookingForAJob ? "yes" : "no"}</span>
           </div>{profile.lookingForAJob && (
             <div className={n.myProffessionalSkillsContainer}>
-              <h4 className={n.myProffessionalSkills}><br/>My professional skills:</h4> {profile.lookingForAJobDescription}
+              <h4 className={n.myProffessionalSkills}>My professional skills:</h4> <span style={{color: 'rgba(0, 0, 0, 0.8'}}>{profile.lookingForAJobDescription}</span>
             </div>
           )}
           <div className={n.aboutMeContainer}>
-            <h4 className={n.aboutMe}>About me:</h4> {profile.aboutMe}
+            <h4 className={n.aboutMe}>About me:</h4> <span style={{color: 'rgba(0, 0, 0, 0.8'}}>{profile.aboutMe}</span>
           </div>
         </div>
-        <div className={n.ContactsFormContainer}>
+
+        <button onClick={toggleInfoVisibility} className={n.toggleInfoVisibilityBtn}>Show all information ↓</button>
+
+        <div className={`${n.ContactsFormContainer} ${infoVisibility ? n.ContactsFormContainerVisible : ''}`}>
           <div className={n.ContactsFormTitleContainer}>
             <b className={n.ContactsFormTitle}>Contacts:</b>
+            <hr style={{marginTop: '10px'}}></hr>
           </div>{" "}
           {Object.keys(profile.contacts).map((key) => {
             if (key === "vk") {
@@ -188,7 +201,7 @@ type ContactsPropsType = {
 const Contact: React.FC<ContactsPropsType> = ({ contactTitle, contactValue }) => {
   return (
     <div className={n.contact}>
-      <b>{contactTitle}:</b> {contactValue}
+      <b>{contactTitle}:</b> <span style={{color: 'rgba(0, 0, 0, 0.8'}}>{contactValue}</span>
     </div>
   );
 };

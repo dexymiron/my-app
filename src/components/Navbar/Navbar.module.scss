@@ -1,15 +1,29 @@
+@import '../../scss/base/breakpoints';
+
+.toggleMenuBtn {
+  display: none;
+  border: none;
+  z-index: 1;
+
+  position: fixed;
+  top: 10px;
+  left: 270px;
+}
+
 .nav {
   grid-area: n;
-  background: #7171712b; //#eff2f6; brown: 56453E //antd: 002140 //app: 7171712b
+  //background: #7171712b; //#eff2f6; brown: 56453E //antd: 002140 //app: 7171712b
+  //background: linear-gradient(to top, #3a393e1d, #c3c3c3);
+  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+
   padding: 20px;
   font-size: 21px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border-right: 5px solid rgba(0, 0, 0, 0.1);
-  border-left: 6px solid rgba(0, 0, 0, 0.1);
+  //border-right: 5px solid rgba(0, 0, 0, 0.1);
+  //border-left: 6px solid rgba(0, 0, 0, 0.1);
 }
-
 
 /* .item:focus {
   color: #F1E2AD;
@@ -21,6 +35,9 @@
 
 .buttonContainer {
   position: relative;
+
+  //ICONS
+  
 }
 
 .itemFriends {
@@ -30,11 +47,16 @@
 .btn {
   width: 160px;
   height: 45px;
+  //padding: 15px 0 15px 25px;
   cursor: pointer;
-  background: rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.3);
+  //background: rgba(0, 0, 0, 0.1);
+  border: none;
   outline: none;
   transition: 1s ease-in-out;
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+  }
 }
 
 .activeLinkBtn {
@@ -62,7 +84,7 @@ a.activeLinkBtn {
 
 
 .btn:hover {
-  transition: 1s ease-in-out;
+  transition: 0.2s ease-in-out;
   background: #9c9c9d;
 }
 
@@ -71,7 +93,65 @@ a.activeLinkBtn {
 }
 
 .btn .btnText {
+  position: absolute;
+  left: 75px;
+  top: 16px;
   color: #000;
   font-size: 18px;
   font-weight: 100;
+}
+
+@media (max-width: $breakpoint-desktop) {
+  // Стили для больших экранов и десктопов
+}
+
+@media (max-width: $breakpoint-tablet) {
+  
+}
+
+@media (max-width: $breakpoint-small-tablet) {
+  .toggleMenuBtn {
+    display: inline-block;
+  }
+
+  .nav { 
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: fixed;
+    padding: 0;
+    top: 85px;
+    width: 100%;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    background-color: white;
+  }
+
+  .navVisible {
+    z-index: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  
+  .buttonContainer {
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .nav {  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .toggleMenuBtn {
+    left: 210px;
+  }
 }

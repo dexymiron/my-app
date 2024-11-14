@@ -1,6 +1,19 @@
+.formControl input, 
+.formControl textarea {
+    border-radius: 15px;
+    padding-inline: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    margin-block: 15px;
+}
+
+.formControl input {
+    height: 30px;
+}
+
 .formControl.error input,
 .formControl.error textarea
-{
+{   
+    display: flex;
     border: 2px solid rgb(158, 4, 4);
 }
 

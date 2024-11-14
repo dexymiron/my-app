@@ -1,28 +1,85 @@
 .item {
+  position: relative;
+  margin-bottom: 25px;
   color: rgb(0, 0, 0);
   font-size: 18px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 15px;
-  padding: 10px 100px 10px 100px;
+  background-color: rgba(255, 255, 255, 0.377);
+  //border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 10px 30px 10px 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.postImageWrapper {
+  margin-top: 10px;
+  .postImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.postMessage {
+  margin-top: 10px;
+  padding-right: 150px;
 }
 
 .likesAndCount {
   display: flex;
   justify-content: flex-end;
   align-items: baseline;
+
+  .svgLikes {
+    transition: transform 0.3s ease;
+  }
+
+  .svgLikes:hover {
+    transform: scale(1.2);
+  }
+
   .likes {
     margin-left: 5px;
     margin-right: 10px;
   }
+  
+
   .likesCount {
     color: rgb(91, 13, 13);
     font-weight: bold;
+    transition: transform 0.3s ease;
+  }
+
+  .likesCount:hover {
+    transform: scale(1.2);
   }
 }
 
-.item img {
-  width: 50px;
-  height: 50px;
-  border-radius: 30px;
+
+
+.removeButton {
+  position: absolute;
+  top: 21px;
+  right: 20px;
+  width: 115px;
+  height: 30px;
+  background: linear-gradient(135deg, rgb(93, 1, 1, 0.8), rgba(220, 0, 0, 0.8),);
+  //background-color: rgb(1, 111, 1); //56453E
+  color: white;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px; 
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  &:hover {
+    background: linear-gradient(135deg, rgba(220, 0, 0, 0.8), rgb(93, 1, 1, 0.8));
+    //background-color: rgba(1, 111, 1, 0.832);
+    border: 1px solid rgba(0, 0, 0, 0.203);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+  }
 }
 

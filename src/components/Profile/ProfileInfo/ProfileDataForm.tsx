@@ -33,7 +33,7 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & Prop
         {error && <div className={n.formSummaryError}>{error}</div>}
         <div className={n.nameBlock}>
           <b className={n.nameTitle}>Full name</b>:{" "}
-          {createField("Full name", "fullName", [], Input)}
+          {createField("Full name", "fullName", [requiredField, maxLengthCreator(21)], Input)}
         </div>
         <div className={n.LookingJobBlock}>
           <b className={n.LookingJobTitle}>Looking for a job</b>:{" "}
@@ -62,6 +62,7 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileType, PropsType> & Prop
       </div>
       <div className={n.Contacts}>
         <b className={n.ContactsTitle}>Contacts</b>{" "}
+        <hr style={{marginBlock: '10px'}}></hr>
         {Object.keys(profile.contacts).map((key) => {
           if (key === "vk") {
             return null; /* Исключили VK */

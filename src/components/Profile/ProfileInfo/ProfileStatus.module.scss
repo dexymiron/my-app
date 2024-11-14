@@ -7,8 +7,9 @@
     text-align: center;
     padding: 5px;
     border-radius: 5px;
-    border: 3px solid rgba(0, 0, 0, 0.3);
-    background-color: rgba(255, 255, 255, 0.2);
+    //border: 3px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
 .statusStatus {
@@ -17,4 +18,8 @@
 
 .statusEditModeInput {
     max-width: 135px;
+}
+
+.statusValue {
+    color: rgba(0, 0, 0, 0.8);
 }

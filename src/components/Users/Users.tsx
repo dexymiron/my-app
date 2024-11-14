@@ -10,6 +10,7 @@ import { ThunkDispatch } from "redux-thunk";
 import { AppStateType } from "../../redux/redux-store";
 import { AnyAction } from "redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 type UsersType = {};
 
@@ -70,6 +71,7 @@ export const Users: React.FC<UsersType> = () => {
     dispatch(unfollow(userId));
   };
 
+
   return (
     <div className={n.UsersPage}>
       <UsersSearchForm onFilterChanged={onFilterChanged} />
@@ -79,15 +81,18 @@ export const Users: React.FC<UsersType> = () => {
         totalItemsCount={totalUsersCount}
         pageSize={pageSize}
       />
-      {users.map((u) => (
-        <User
-          user={u}
-          followingInProgress={followingInProgress}
-          key={u.id}
-          follow={handleFollow}
-          unfollow={handleUnfollow}
-        />
-      ))}
+      <div className={n.UsersMainContainer}>
+        {users.map((u) => (
+          <User
+            user={u}
+            followingInProgress={followingInProgress}
+            key={u.id}
+            follow={handleFollow}
+            unfollow={handleUnfollow}
+          />
+        ))}
+      </div>
+      <ToastContainer />
     </div>
   );
 };

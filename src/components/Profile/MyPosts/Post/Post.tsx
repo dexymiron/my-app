@@ -1,22 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import n from "./Post.module.scss";
 
 type PropsType = {
   message: string;
   likesCount: number;
+  onRemove: () => void;
 }
 
 const Post: React.FC<PropsType> = (props) => {
+
+  const [likes, setLikes] = useState(props.likesCount);
+
   return (
     <div className={n.item}>
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS94-h02nA6tjH-orlYL1CJN7kZ2QCO2ldtww&s"></img>
-      {props.message}
-      <div className={n.likesAndCount}>
+      <div className={n.postImageWrapper}><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS94-h02nA6tjH-orlYL1CJN7kZ2QCO2ldtww&s" alt="userPhoto" className={n.postImage}></img></div>
+      <div className={n.postMessage}>{props.message}</div>
+      <div className={n.likesAndCount} onClick={() => setLikes(prevLikes => prevLikes + 1)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1em"
           height="1em"
           viewBox="0 0 400 400"
+          className={n.svgLikes}
         >
           <path
             fill="#059669"
@@ -35,8 +40,9 @@ const Post: React.FC<PropsType> = (props) => {
             d="M316.06 52.62C306.63 39.32 291 32 272 32a16 16 0 0 0-14.31 8.84c-3 6.07-15.25 24-28.19 42.91c-18 26.33-40.35 59.07-55.23 84.8l-.13.23c-20.48 35.49-30.35 54.93-33.82 62l-1 2a16.35 16.35 0 0 1-5.79 5.22a15.8 15.8 0 0 1-7.53 2h-25.31A84.69 84.69 0 0 0 16 324.69v38.61a84.69 84.69 0 0 0 84.69 84.7h48.79a17.55 17.55 0 0 1 9.58 2.89C182 465.87 225.34 480 272 480c7.45 0 14.19-.14 20.27-.38a8 8 0 0 0 6.2-12.68l-.1-.14C289.8 454.41 288 441 288 432a61.2 61.2 0 0 1 5.19-24.77a17.36 17.36 0 0 0 0-14.05a63.8 63.8 0 0 1 0-50.39a17.32 17.32 0 0 0 0-14a62.15 62.15 0 0 1 0-49.59a18.13 18.13 0 0 0 0-14.68A60.3 60.3 0 0 1 288 239c0-8.2 2-21.3 8-31.19a15.63 15.63 0 0 0 1.14-13.64c-.38-1-.76-2.07-1.13-3.17a24.84 24.84 0 0 1-.86-11.58c3-19.34 9.67-36.29 16.74-54.16c3.08-7.78 6.27-15.82 9.22-24.26c6.14-17.57 4.3-35.2-5.05-48.38"
           />
         </svg>
+        <button className={n.removeButton} onClick={props.onRemove}>Remove</button>
         <div className={n.likes}>likes</div>
-        <div className={n.likesCount}>{props.likesCount}</div>
+        <div className={n.likesCount}>{likes}</div>
       </div>
     </div>
   );

@@ -10,7 +10,11 @@ export const getUsers = createSelector(getUsersSelector, (users) => {
     return users.filter(u => true);
 })
 
-
+//ONLY FRIENDS
+export const getFriends = createSelector(
+    (state: AppStateType) => state.usersPage.users,
+    (users) => users.filter(user => user.followed)
+);
 
 
 export const getPageSize = (state: AppStateType) => {

@@ -1,11 +1,32 @@
 .paginator {
-  margin: 10px;
+  margin: 30px 10px 10px 10px;
 }
 .pageNumber {
-  padding: 2px;
-  border: 1px solid grey;
+  margin-inline: 3px;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
-.pageNumber.selectedPage {
+
+.pageNumber:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.selectedPage {
+  color: #1677ff;
   font-weight: bold;
-    border-color: black;
+  border: 1px solid #1677ff;
+}
+
+.selectedPage:hover {
+  background-color: rgba(113, 113, 113, 0);
+}
+
+.nextButton {
+  border: none;
+  border-radius: 7px;
+  padding: 5px 10px;
+}
+
+.nextButton:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }

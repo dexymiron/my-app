@@ -1,30 +1,33 @@
-
+@import '../../../scss/base/breakpoints';
 
 .preloader {
   background-color: red;
 }
 
 .image {
-    width: 1000px;
+    //width: 1000px;
   }
 
   .profileDataFormWrapper {
     display: flex;
 
-   margin: 35px 35px 25px 35px;
+   margin: 40px 35px 25px 35px;
     
   }
 
   .defaultAvatar {
-    width: 150px;
-    border-radius: 10%;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    vertical-align: top;
   }
 
   .avatar {
-    width: 150px;
+    width: 100px;
     object-fit: cover;
-    border-radius: 25px;
+    border-radius: 50%;
     vertical-align: top;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
   .contact {
@@ -40,6 +43,7 @@
    font-size: 24px;
    font-weight: bold;
    margin-left: 25px;
+   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
   .profileName p {
@@ -53,7 +57,6 @@
   }
 
   .imageBlock {
-    
   }
   
   .profileDataForm {
@@ -74,7 +77,7 @@
     transition: transform 0.4s ease, opacity 0.4s ease;
 
     border: 5px solid rgba(0, 0, 0, 0.5);
-    border-radius: 30px;
+    border-radius: 50%;
   }
 
   .chooseAvatarLabel:hover {
@@ -99,10 +102,11 @@
     height: 45px;
     width: 150px;
     position: absolute;
-    right: 10px ;
-    top: 10px;
+    right: 35px ;
+    top: 20px;
 
-    background-color: #337ab7; //56453E
+    //background-color: #337ab7; //56453E
+    background: linear-gradient(135deg, #005072, #0065d8);
     color: white;
     padding: 10px 20px;
     font-size: 16px;
@@ -114,7 +118,8 @@
   }
 
   .editProfileBtn:hover {
-    background-color: #02a320;
+    //background-color: #02a320;
+    background: linear-gradient(135deg, #0065d8, #005072);
     transform: translateY(-3px);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
   }
@@ -123,7 +128,7 @@
     height: 45px;
       width: 150px;
       position: absolute;
-      right: 10px;
+      right: 35px;
       top: 75px;
 
       background-color: #211C1D;
@@ -147,13 +152,11 @@
 
 .MainEditedForm {
 display: flex;
-gap: 50px;
+align-items: flex-start;
 //padding-bottom: 25px;
 font-size: 18px;
 max-width: 600px;
-  .buttons {
 
-  }
 
   .leftColFormData {
     display: flex;
@@ -161,11 +164,16 @@ max-width: 600px;
     gap: 15px;
     justify-content: space-between;
 
-    border: 3px solid rgba(0, 0, 0, 0.3);
+    //border: 3px solid rgba(0, 0, 0, 0.3);
+    //font-style: italic;
+    margin-right: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    padding: 5px;
+    padding: 15px 25px 15px 25px;
     .formSummaryError {
-
+      max-width: 180px;
+      padding: 5px;
+      border-radius: 10px;
     }
     .nameBlock {
       
@@ -196,9 +204,11 @@ max-width: 600px;
     flex-direction: column; 
     justify-content: space-between;
 
-    border: 3px solid rgba(0, 0, 0, 0.3);
+    //border: 3px solid rgba(0, 0, 0, 0.3);
+    //font-style: italic;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    padding: 5px;
+    padding: 15px 25px 15px 25px;
     
     .ContactsTitle {
       
@@ -219,33 +229,60 @@ max-width: 600px;
     max-width: 715px;
     margin-bottom: 10px;
     flex: 1;
-    border: 4px solid rgba(0, 0, 0, 0.2);
-    background-color: rgba(155, 155, 155, 0.1);
-    border-radius: 10px;
-    padding: 10px;
+    //border: 4px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px 15px 15px 15px;
 
     gap: 15px;
-    display: flex;
+    //display: flex;
     .leftColForm {
-      max-width: 300px;
+      //max-width: 300px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: space-between;
+      gap: 15px;
+      
       .leftColFormNameContainer {
+        display: flex;
+        flex-direction: column;
+        .leftColFormName {
+          margin-bottom: 10px;
+        }
       }
 
       .myProffessionalSkillsContainer {
-
+        display: flex;
+        flex-direction: column;
+        .myProffessionalSkills {
+          margin-bottom: 10px;
+        }
       }
 
       .aboutMeContainer {
-        margin-top: 15px;
+        //margin-top: 15px;
+        margin-left: 15px;
+        display: flex;
+        flex-direction: column;
+        .aboutMe {
+          margin-bottom: 10px;
+        }
       }
     }
     .ContactsFormContainer {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      gap: 15px;
+      margin-top: 25px;
+
+
+      transition: max-height 0.3s ease, opacity 0.3s ease;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+
       .ContactsFormTitleContainer {
       }
       .contact {
@@ -253,6 +290,65 @@ max-width: 600px;
        
       }
     }
+
+    //===============================VISIBLE CONTACTS
+    .ContactsFormContainerVisible {
+      max-height: 500px;
+      opacity: 1;
+      overflow: visible;
+    }
+  
+   .toggleInfoVisibilityBtn {
+    height: 45px;
+    width: 100%;
+    margin: 25px 0 0 0;
+
+    //background-color: #337ab7; //56453E
+    background: linear-gradient(135deg, #d6d6d6, #dbdbdb);
+    color: rgb(93, 93, 93);
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    //border: 1px solid rgba(2, 28, 141, 0.1);
+    border-radius: 20px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+   }
+   .toggleInfoVisibilityBtn:hover {
+    //background-color: #02a320;
+    background: linear-gradient(135deg, #dbdbdb, #d6d6d6);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  }
+}
+
+
+@media (max-width: $breakpoint-desktop) {
+ 
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .profileDataFormWrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .MainEditedForm {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+@media (max-width: $breakpoint-small-tablet) {
+  
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .editProfileBtn, .cancelProfileBtn {
+    right: 0;
   }
 }
 

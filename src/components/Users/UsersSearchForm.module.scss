@@ -1,0 +1,90 @@
+@import '../../scss/base/breakpoints';
+
+
+.searchInputWrapper {
+    position: relative;
+    max-width: 300px;
+    margin: 25px 0 25px 0;
+}
+
+.searchInput {
+    //border: none;
+    height: 30px;
+    margin-left: 10px;
+    min-width: 300px;
+    border-radius: 30px;
+    padding-inline: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.searchInputWrapper::after {
+    position: absolute;
+
+    background-image: url('../../assets/images/search.png');
+    content: "";
+    opacity: 0.5;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    right: 0;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+.selectList {
+    border-radius: 30px;
+    margin-left: 10px;
+    height: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.searchButton {
+    margin-left: 21px;
+    border-radius: 20px;
+    width: 100px;
+    height: 25px;
+    border: 1px solid rgba(2, 28, 141, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.searchButton:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.usersLogoContainer {
+    position: absolute;
+    top: 120px;
+    right: 30px;
+    display: inline-flex;
+    align-items: center;
+}
+
+
+//=============================================<1200
+@media (max-width: $breakpoint-desktop) {
+    // Стили для больших экранов и десктопов
+  }
+  //=============================================<992
+  @media (max-width: $breakpoint-tablet) {
+    .usersLogoContainer {
+        top: 0;
+    }
+  }
+  
+  
+  //=============================================<768
+  @media (max-width: $breakpoint-small-tablet) {
+    
+  }
+  //=============================================<576
+  @media (max-width: $breakpoint-mobile) {
+    .usersLogoContainer {
+        display: none;
+    }
+  }
+
