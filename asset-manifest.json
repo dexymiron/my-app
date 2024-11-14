@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/my-app/static/css/main.e1014d05.css",
-    "main.js": "/my-app/static/js/main.64fe70cb.js",
-    "static/css/903.dd096b79.chunk.css": "/my-app/static/css/903.dd096b79.chunk.css",
+    "main.js": "/my-app/static/js/main.1d7e2f3d.js",
+    "static/css/903.e51cc15d.chunk.css": "/my-app/static/css/903.e51cc15d.chunk.css",
     "static/js/903.3d106816.chunk.js": "/my-app/static/js/903.3d106816.chunk.js",
-    "static/css/477.10001378.chunk.css": "/my-app/static/css/477.10001378.chunk.css",
+    "static/css/477.f68ad366.chunk.css": "/my-app/static/css/477.f68ad366.chunk.css",
     "static/js/477.07ea2988.chunk.js": "/my-app/static/js/477.07ea2988.chunk.js",
     "static/css/357.1c8ab5c2.chunk.css": "/my-app/static/css/357.1c8ab5c2.chunk.css",
     "static/js/357.1ac286a7.chunk.js": "/my-app/static/js/357.1ac286a7.chunk.js",
@@ -31,10 +31,10 @@
     "static/media/ion--social-facebook.svg": "/my-app/static/media/ion--social-facebook.41fe13aa5935f84b2a9c062805dfef95.svg",
     "static/media/border.svg": "/my-app/static/media/border.0c4fa0522c97fda0b83941b2f561ee39.svg",
     "main.e1014d05.css.map": "/my-app/static/css/main.e1014d05.css.map",
-    "main.64fe70cb.js.map": "/my-app/static/js/main.64fe70cb.js.map",
-    "903.dd096b79.chunk.css.map": "/my-app/static/css/903.dd096b79.chunk.css.map",
+    "main.1d7e2f3d.js.map": "/my-app/static/js/main.1d7e2f3d.js.map",
+    "903.e51cc15d.chunk.css.map": "/my-app/static/css/903.e51cc15d.chunk.css.map",
     "903.3d106816.chunk.js.map": "/my-app/static/js/903.3d106816.chunk.js.map",
-    "477.10001378.chunk.css.map": "/my-app/static/css/477.10001378.chunk.css.map",
+    "477.f68ad366.chunk.css.map": "/my-app/static/css/477.f68ad366.chunk.css.map",
     "477.07ea2988.chunk.js.map": "/my-app/static/js/477.07ea2988.chunk.js.map",
     "357.1c8ab5c2.chunk.css.map": "/my-app/static/css/357.1c8ab5c2.chunk.css.map",
     "357.1ac286a7.chunk.js.map": "/my-app/static/js/357.1ac286a7.chunk.js.map",
@@ -44,6 +44,6 @@
   },
   "entrypoints": [
     "static/css/main.e1014d05.css",
-    "static/js/main.64fe70cb.js"
+    "static/js/main.1d7e2f3d.js"
   ]
 }
