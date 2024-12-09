@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/my-app/static/css/main.bd41c25d.css",
-    "main.js": "/my-app/static/js/main.82e18560.js",
+    "main.js": "/my-app/static/js/main.7397213d.js",
     "static/css/903.e51cc15d.chunk.css": "/my-app/static/css/903.e51cc15d.chunk.css",
     "static/js/903.3d106816.chunk.js": "/my-app/static/js/903.3d106816.chunk.js",
     "static/css/477.af941ad6.chunk.css": "/my-app/static/css/477.af941ad6.chunk.css",
@@ -31,7 +31,7 @@
     "static/media/ion--social-facebook.svg": "/my-app/static/media/ion--social-facebook.41fe13aa5935f84b2a9c062805dfef95.svg",
     "static/media/border.svg": "/my-app/static/media/border.0c4fa0522c97fda0b83941b2f561ee39.svg",
     "main.bd41c25d.css.map": "/my-app/static/css/main.bd41c25d.css.map",
-    "main.82e18560.js.map": "/my-app/static/js/main.82e18560.js.map",
+    "main.7397213d.js.map": "/my-app/static/js/main.7397213d.js.map",
     "903.e51cc15d.chunk.css.map": "/my-app/static/css/903.e51cc15d.chunk.css.map",
     "903.3d106816.chunk.js.map": "/my-app/static/js/903.3d106816.chunk.js.map",
     "477.af941ad6.chunk.css.map": "/my-app/static/css/477.af941ad6.chunk.css.map",
@@ -44,6 +44,6 @@
   },
   "entrypoints": [
     "static/css/main.bd41c25d.css",
-    "static/js/main.82e18560.js"
+    "static/js/main.7397213d.js"
   ]
 }
